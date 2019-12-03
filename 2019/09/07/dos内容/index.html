@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: CVE-2019-0708 | 你好</title>
+  <title>漏洞复现 | 你好</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="你好">
-<meta property="og:url" content="http://yoursite.com/tags/CVE-2019-0708/index.html">
+  <meta name="description" content="CVE _2019_07_08">
+<meta name="keywords" content="系统安全,CVE-2019-0708">
+<meta property="og:type" content="article">
+<meta property="og:title" content="漏洞复现">
+<meta property="og:url" content="http://yoursite.com/2019/09/07/dos内容/index.html">
 <meta property="og:site_name" content="你好">
+<meta property="og:description" content="CVE _2019_07_08">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/09/07/dos内容/-![](%20http://ww1.sinaimg.cn/large/007bHQE8gy1g6rgpepwi8j31h50su4qp.jpg)">
+<meta property="og:updated_time" content="2019-12-03T12:05:52.961Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你好">
+<meta name="twitter:title" content="漏洞复现">
+<meta name="twitter:description" content="CVE _2019_07_08">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/07/dos内容/-![](%20http://ww1.sinaimg.cn/large/007bHQE8gy1g6rgpepwi8j31h50su4qp.jpg)">
   
     <link rel="alternative" href="/atom.xml" title="你好" type="application/atom+xml">
   
@@ -150,36 +157,74 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-dos内容" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/07/dos内容/" class="archive-article-date">
-  	<time datetime="2019-09-07T03:51:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-07</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/07/dos内容/">漏洞复现</a>
+    <h1 class="article-title" itemprop="name">
+      漏洞复现
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/07/dos内容/" class="archive-article-date">
+  	<time datetime="2019-09-07T03:51:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="CVE-2019-07-08"><a href="#CVE-2019-07-08" class="headerlink" title="CVE _2019_07_08"></a>CVE _2019_07_08</h3><a id="more"></a>
+<p>#day4初始DOS</p>
+<p>DOS是一款操作系统，是一款基于命令行地操作系统，同时也是支持键盘的快捷键操作相关地功能，其核心内容是：CMD，意味着DOS是由很多的缩写命令组成的</p>
+<p>如何打开CMD<br>win+R==&gt;cmd 回车<br>开始按钮上点击右键，选择运行=》cmd，或直接选择命令行<br>打开任一资源管理器，在地址栏中，输入cmd回车即可打开  </p>
+<p>ipconfig ：用于查看当前本机IP，可以是局部在用的，也可以是全部包含没有用的  </p>
+<p>ping :是用于是对目标电脑发送一个特定长度地字符数据，如果哦对方能够接受到，则说明对方是存在的，因此多用于检查IP是否被占用或与目标PC是否通信正常。如果需要持续ping对方，可以加上-t来实现<br>PS..如果需要结束，ctrl+c</p>
+<p>cls:清屏</p>
+<p>date:查看日期 date /t<br>time:查看时间 time /t<br>dir:查看当前文件夹下的目录结构</p>
+<p>color:改变CMD的颜色，颜色范围，0-9，A-F</p>
+<p>盘符+： 切换分区（盘）如D：<br>cd xxx：进入指定的文件夹  ，xxx表示文件夹/目录名<br>cd ..:返回上一级文件夹（目录）</p>
+<p>##net命令</p>
+<p>net 是用于查看当前系统的用户及服务内容的，一啊不能通过输入net可以查看到支持的命令列表，net命令的使用方式是net xxx,xxx表示列表中支持的功能<br>net user :查看有哪些用户<br>net user xxx查看指定命令<br>net user guest /active:no :对指定的用户名进行激活或关闭操作<br>net view :查看本地局域网中开启了那些共享服务<br>net time :目录IP，查看对方的电脑时间<br>net config :查看当前系统的网络服务情况<br>net password 密码：改为本地登录的密码<br>net user xxx mima :改变按指定用户名为xxx的密码为指定密码<br>net start:查看当前系统启动的服务，返回服务名称<br>net start 服务名：启动指定的服务<br>net stop 服务名：关闭指定的服务<br>net pause 服务名：暂停指定的服务  </p>
+<p>netstat -a:开启的端口<br>netstat -an: 外部和内部的端口<br>netstat -v:本地地址的<br>netstat -A ip:指定ip的状态</p>
+<p>##ftp</p>
+<p>FTP是计算机中的一种文件传输协议，分为主被动模式进行通信FTP支持匿名和非匿名访问，一般默认端口为20和21，一般情况下端口开放21，在最早，访问FTP多用命令行进行，FTP的完整访问路径为：</p>
+<p>####<a href="ftp://username:password@host:port/filename" target="_blank" rel="noopener">ftp://username:password@host:port/filename</a></p>
+<p>FTP的操作：<br>打开客户端：ftp回车<br>打开ftp服务器：open ip 端口号（21为默认，一般不输）<br> cd: 作用同cmd下的作用<br>dir:同cmd<br>bye：退出<br>quit：退出<br>lcd 目录：转到指定目录<br>get 文件:下载指定文件<br>mget :批量下载 </p>
+<p>##Msg<br>向局域网内用户发送消息<br>Msg /server:ip * “ 内容”</p>
+<p>##systeminfo:电脑配置</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -195,61 +240,115 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/07/dos内容/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/07/CVE-2019-0708/" class="archive-article-date">
-  	<time datetime="2019-09-07T03:51:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-07</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/12/03/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/07/CVE-2019-0708/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">漏洞复现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/07/CVE-2019-0708/">漏洞复现</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">系统安全</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CVE-2019-0708</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -272,9 +371,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
