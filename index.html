@@ -152,6 +152,107 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-IPV4编制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/04/IPV4编制/">IPv4编制</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/04/IPV4编制/" class="archive-article-date">
+  	<time datetime="2019-12-04T11:51:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h1 id="IPv4编制方案"><a href="#IPv4编制方案" class="headerlink" title="IPv4编制方案"></a>IPv4编制方案</h1><p>由32为二进制组成，划分为4个字节，中间用.隔开，每组8位，以十进制表示，分为网络地址和主机地址两个部分。</p>
+<p>二进制只有两种状态 0和1</p>
+<p>IPV4一共有：2^32大约是40多亿个地址<br>IP地址在网络中是唯一的，不能重复。<br>对地址进行分类<br>分公有地址、私有地址、保留地址</p>
+<p>NAT网络地址转换 </p>
+<h2 id="IP地址分类"><a href="#IP地址分类" class="headerlink" title="IP地址分类"></a>IP地址分类</h2><h3 id="A类网络地址范围"><a href="#A类网络地址范围" class="headerlink" title="A类网络地址范围"></a>A类网络地址范围</h3><p><strong>第一个字节的第一位必须是0，第一个字节的取值是0-127</strong><br>即：0xxxxxxx<br><strong>前八位是网络号</strong><br>1.1.1.1/8 网络号是8位 255.0.0.0<br>网络号（表示地址具体在哪个网络）：1.0.0.0<br>广播地址：1.255.255.255<br>在这网络中有多少地址：2^24<br>有效地址：2^24-2<br>子网掩码：255.0.0.0 斜杠表示法:1.1.1.1/8</p>
+<h3 id="B类网络地址范围"><a href="#B类网络地址范围" class="headerlink" title="B类网络地址范围"></a>B类网络地址范围</h3><p><strong>第一个字节的第一位必须是1，第二位必须是0，第一个字节的取值是128-191</strong></p>
+<p>181.1.1.1/16<br>网络地址：181.1.0.0<br>广播地址：181.1.255.255<br>有效地址：2^16-2</p>
+<h3 id="C类网络地址范围"><a href="#C类网络地址范围" class="headerlink" title="C类网络地址范围"></a>C类网络地址范围</h3><p><strong>第一个字节的第一位必须是1，第三位必须是0，第一个字节的取值是192-223</strong></p>
+<p>192.168.1.1/24<br>网络地址：192.168.1.0<br>广播地址：192.168.1.255<br>有效地址：2^8-2</p>
+<h3 id="D类网络地址范围"><a href="#D类网络地址范围" class="headerlink" title="D类网络地址范围"></a>D类网络地址范围</h3><p>第一个字节位224-239，组播地址</p>
+<h3 id="E类网络地址范围"><a href="#E类网络地址范围" class="headerlink" title="E类网络地址范围"></a>E类网络地址范围</h3><p>第一个字节位240-255，科学地址</p>
+<h2 id="保留地址"><a href="#保留地址" class="headerlink" title="保留地址"></a>保留地址</h2><p>网络地址全0 表示当前网络<br>网络地址全1 表示所有网络<br>地址为127.0.0.1 保留用于环回测试<br>节点地址全0  表示网络地址<br>节点地址全1 表示指定网络中的所有节点<br>整个IP地址全为0   思科路由器用它来指定默认路由，也可能表示任何网络<br>整个IP地址全为1   到当前网络中所有节点的广播，有时称为“全1广播”或限定广播即：255.255.255.255</p>
+<h2 id="各类网络地址中网络数和主机数"><a href="#各类网络地址中网络数和主机数" class="headerlink" title="各类网络地址中网络数和主机数"></a>各类网络地址中网络数和主机数</h2><p>A 类网络地址：<br>　　　　实际可用的A类网络地址数为：2^7=128<br>                      合法的主机数为：2 ^24－2＝16777214<br>B类网络地址：<br>　　　　实际可用的B类网络地址数为：2^14=16384<br>                     合法的主机数为：2^16-2=65534<br>C类网络地址：<br>　　　　实际可用的C类网络地址数为：2^21=2097152<br>                     合法的主机数为：2^8-2=254</p>
+<h2 id="私有地址"><a href="#私有地址" class="headerlink" title="私有地址"></a>私有地址</h2><p>A类：10.0.0.0<del>10.255.255.255<br>B类：172.16.0.0</del>172.31.255.255<br>C类：192.168.0.0~192.168.255.255</p>
+<p><strong>子网划分:将大的网络划分成若干个小的网络，尽量减少广播风暴，提高网络效率</strong></p>
+<h3 id="如何进行子网划分"><a href="#如何进行子网划分" class="headerlink" title="如何进行子网划分"></a>如何进行子网划分</h3><p>C类地址：192.168.1.0/24<br>网络号:192.168.1.0<br>广播号192.168.1.255<br>可用地址：1.1-1.254<br>向主机位借位?<br><strong>案例一：</strong><br>如果借2（n）位，那么划分几个网？2^1(2^n)个网络<br>划分成了那几个网络？<br>192.168.1.0/25<br>子网掩码？<br>255.255.255.128<br>块大小（每个小网络的地址总数）:256-128=128</p>
+<p>分成了那些网络？<br>192.168.1.0/25<br> 网络号：192.168.1.0/25<br> 广播地址（网络中最后一个地址）:    192.168.1.127/25</p>
+<p>192.168.1.128/25<br> 网络号：192.168.1.128/25<br> 广播地址（网络中最后一个地址）:    192.168.1.255/25</p>
+<p><strong>/30 255.255.255.252</strong><br><strong>/29 255.255.255.248</strong><br><strong>/28 255.255.255.240</strong><br><strong>/27 255.255.255.224</strong><br><strong>/26 255.255.255.192</strong><br><strong>/25 255.255.255.128</strong></p>
+<p><strong>案例二</strong><br>B类网络子网划分<br> 181.1.1.1 默认子网掩码值 255.255.0.0/16</p>
+<hr>
+<p>1.假设借2位，那么子网掩码值：255.255.192.0/18<br>2.划分了2^2=4个网络<br>3.快大小：256-192=64<br>4.有哪些网络？<br>181.1.0.0<br> 网络号：181.1.0.0/18<br> 广播号：181.1.63.255<br> 可用地址：181.1.0.1-181.1.63.254</p>
+<hr>
+<p>181.1.64.0<br> 步骤如上<br>181.1.128.0<br> 步骤如上<br>181.1.192.0<br> 步骤如上</p>
+<h2 id="地址汇总"><a href="#地址汇总" class="headerlink" title="地址汇总"></a>地址汇总</h2><p>1.变化的字节<br>2.块大小<br>3.掩码值 256-块大小</p>
+<p><img src="https://wx1.sinaimg.cn/small/006ZIQqwgy1g9kxx4jel2j30j8085glx.jpg" alt></p>
+<p>变化的字节在哪里？第三字节<br>块大小？  4<br>掩码值：256-块大小<br>172.16.4.0/22<br>可用地址：172.16.4.1—172.16.7.254  </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">系统安全</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/04/IPV4编制/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-dos内容" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
