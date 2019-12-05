@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>IPv4编制 | 你好</title>
+  <title>生成树和端口安全 | 你好</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="IPv4编制方案由32为二进制组成，划分为4个字节，中间用.隔开，每组8位，以十进制表示，分为网络地址和主机地址两个部分。 二进制只有两种状态 0和1 IPV4一共有：2^32大约是40多亿个地址IP地址在网络中是唯一的，不能重复。对地址进行分类分公有地址、私有地址、保留地址 NAT网络地址转换  IP地址分类A类网络地址范围第一个字节的第一位必须是0，第一个字节的取值是0-127即：0xxxx">
+  <meta name="description" content="端口安全交换机的五种攻击VLAN跳跃攻击生成树攻击MAC表洪水攻击泛洪：广播1.限制MAC地址配置Switch&amp;gt;enSwitch#config tSwitch(config)#int f0/1Switch(config-if)#sw mo acc//设置模式为ACCESSSwitch(config-if)#switchport port-security //开启端口安全Switch(co">
 <meta name="keywords" content="系统安全">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IPv4编制">
-<meta property="og:url" content="http://yoursite.com/2019/12/04/IPV4编制/index.html">
+<meta property="og:title" content="生成树和端口安全">
+<meta property="og:url" content="http://yoursite.com/2019/12/05/生成树/index.html">
 <meta property="og:site_name" content="你好">
-<meta property="og:description" content="IPv4编制方案由32为二进制组成，划分为4个字节，中间用.隔开，每组8位，以十进制表示，分为网络地址和主机地址两个部分。 二进制只有两种状态 0和1 IPV4一共有：2^32大约是40多亿个地址IP地址在网络中是唯一的，不能重复。对地址进行分类分公有地址、私有地址、保留地址 NAT网络地址转换  IP地址分类A类网络地址范围第一个字节的第一位必须是0，第一个字节的取值是0-127即：0xxxx">
+<meta property="og:description" content="端口安全交换机的五种攻击VLAN跳跃攻击生成树攻击MAC表洪水攻击泛洪：广播1.限制MAC地址配置Switch&amp;gt;enSwitch#config tSwitch(config)#int f0/1Switch(config-if)#sw mo acc//设置模式为ACCESSSwitch(config-if)#switchport port-security //开启端口安全Switch(co">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://wx1.sinaimg.cn/small/006ZIQqwgy1g9kxx4jel2j30j8085glx.jpg">
-<meta property="og:updated_time" content="2019-12-04T12:16:53.495Z">
+<meta property="og:updated_time" content="2019-12-05T08:29:45.126Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IPv4编制">
-<meta name="twitter:description" content="IPv4编制方案由32为二进制组成，划分为4个字节，中间用.隔开，每组8位，以十进制表示，分为网络地址和主机地址两个部分。 二进制只有两种状态 0和1 IPV4一共有：2^32大约是40多亿个地址IP地址在网络中是唯一的，不能重复。对地址进行分类分公有地址、私有地址、保留地址 NAT网络地址转换  IP地址分类A类网络地址范围第一个字节的第一位必须是0，第一个字节的取值是0-127即：0xxxx">
-<meta name="twitter:image" content="https://wx1.sinaimg.cn/small/006ZIQqwgy1g9kxx4jel2j30j8085glx.jpg">
+<meta name="twitter:title" content="生成树和端口安全">
+<meta name="twitter:description" content="端口安全交换机的五种攻击VLAN跳跃攻击生成树攻击MAC表洪水攻击泛洪：广播1.限制MAC地址配置Switch&amp;gt;enSwitch#config tSwitch(config)#int f0/1Switch(config-if)#sw mo acc//设置模式为ACCESSSwitch(config-if)#switchport port-security //开启端口安全Switch(co">
   
     <link rel="alternative" href="/atom.xml" title="你好" type="application/atom+xml">
   
@@ -157,20 +155,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-IPV4编制" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-生成树" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      IPv4编制
+      生成树和端口安全
     </h1>
   
 
         
-        <a href="/2019/12/04/IPV4编制/" class="archive-article-date">
-  	<time datetime="2019-12-04T11:51:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
+        <a href="/2019/12/05/生成树/" class="archive-article-date">
+  	<time datetime="2019-12-05T08:29:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-05</time>
 </a>
         
       </header>
@@ -178,33 +176,53 @@
     <div class="article-entry" itemprop="articleBody">
       
         <a id="more"></a>
-<h1 id="IPv4编制方案"><a href="#IPv4编制方案" class="headerlink" title="IPv4编制方案"></a>IPv4编制方案</h1><p>由32为二进制组成，划分为4个字节，中间用.隔开，每组8位，以十进制表示，分为网络地址和主机地址两个部分。</p>
-<p>二进制只有两种状态 0和1</p>
-<p>IPV4一共有：2^32大约是40多亿个地址<br>IP地址在网络中是唯一的，不能重复。<br>对地址进行分类<br>分公有地址、私有地址、保留地址</p>
-<p>NAT网络地址转换 </p>
-<h2 id="IP地址分类"><a href="#IP地址分类" class="headerlink" title="IP地址分类"></a>IP地址分类</h2><h3 id="A类网络地址范围"><a href="#A类网络地址范围" class="headerlink" title="A类网络地址范围"></a>A类网络地址范围</h3><p><strong>第一个字节的第一位必须是0，第一个字节的取值是0-127</strong><br>即：0xxxxxxx<br><strong>前八位是网络号</strong><br>1.1.1.1/8 网络号是8位 255.0.0.0<br>网络号（表示地址具体在哪个网络）：1.0.0.0<br>广播地址：1.255.255.255<br>在这网络中有多少地址：2^24<br>有效地址：2^24-2<br>子网掩码：255.0.0.0 斜杠表示法:1.1.1.1/8</p>
-<h3 id="B类网络地址范围"><a href="#B类网络地址范围" class="headerlink" title="B类网络地址范围"></a>B类网络地址范围</h3><p><strong>第一个字节的第一位必须是1，第二位必须是0，第一个字节的取值是128-191</strong></p>
-<p>181.1.1.1/16<br>网络地址：181.1.0.0<br>广播地址：181.1.255.255<br>有效地址：2^16-2</p>
-<h3 id="C类网络地址范围"><a href="#C类网络地址范围" class="headerlink" title="C类网络地址范围"></a>C类网络地址范围</h3><p><strong>第一个字节的第一位必须是1，第三位必须是0，第一个字节的取值是192-223</strong></p>
-<p>192.168.1.1/24<br>网络地址：192.168.1.0<br>广播地址：192.168.1.255<br>有效地址：2^8-2</p>
-<h3 id="D类网络地址范围"><a href="#D类网络地址范围" class="headerlink" title="D类网络地址范围"></a>D类网络地址范围</h3><p>第一个字节位224-239，组播地址</p>
-<h3 id="E类网络地址范围"><a href="#E类网络地址范围" class="headerlink" title="E类网络地址范围"></a>E类网络地址范围</h3><p>第一个字节位240-255，科学地址</p>
-<h2 id="保留地址"><a href="#保留地址" class="headerlink" title="保留地址"></a>保留地址</h2><p>网络地址全0 表示当前网络<br>网络地址全1 表示所有网络<br>地址为127.0.0.1 保留用于环回测试<br>节点地址全0  表示网络地址<br>节点地址全1 表示指定网络中的所有节点<br>整个IP地址全为0   思科路由器用它来指定默认路由，也可能表示任何网络<br>整个IP地址全为1   到当前网络中所有节点的广播，有时称为“全1广播”或限定广播即：255.255.255.255</p>
-<h2 id="各类网络地址中网络数和主机数"><a href="#各类网络地址中网络数和主机数" class="headerlink" title="各类网络地址中网络数和主机数"></a>各类网络地址中网络数和主机数</h2><p>A 类网络地址：<br>　　　　实际可用的A类网络地址数为：2^7=128<br>                      合法的主机数为：2 ^24－2＝16777214<br>B类网络地址：<br>　　　　实际可用的B类网络地址数为：2^14=16384<br>                     合法的主机数为：2^16-2=65534<br>C类网络地址：<br>　　　　实际可用的C类网络地址数为：2^21=2097152<br>                     合法的主机数为：2^8-2=254</p>
-<h2 id="私有地址"><a href="#私有地址" class="headerlink" title="私有地址"></a>私有地址</h2><p>A类：10.0.0.0<del>10.255.255.255<br>B类：172.16.0.0</del>172.31.255.255<br>C类：192.168.0.0~192.168.255.255</p>
-<p><strong>子网划分:将大的网络划分成若干个小的网络，尽量减少广播风暴，提高网络效率</strong></p>
-<h3 id="如何进行子网划分"><a href="#如何进行子网划分" class="headerlink" title="如何进行子网划分"></a>如何进行子网划分</h3><p>C类地址：192.168.1.0/24<br>网络号:192.168.1.0<br>广播号192.168.1.255<br>可用地址：1.1-1.254<br>向主机位借位?<br><strong>案例一：</strong><br>如果借2（n）位，那么划分几个网？2^1(2^n)个网络<br>划分成了那几个网络？<br>192.168.1.0/25<br>子网掩码？<br>255.255.255.128<br>块大小（每个小网络的地址总数）:256-128=128</p>
-<p>分成了那些网络？<br>192.168.1.0/25<br> 网络号：192.168.1.0/25<br> 广播地址（网络中最后一个地址）:    192.168.1.127/25</p>
-<p>192.168.1.128/25<br> 网络号：192.168.1.128/25<br> 广播地址（网络中最后一个地址）:    192.168.1.255/25</p>
-<p><strong>/30 255.255.255.252</strong><br><strong>/29 255.255.255.248</strong><br><strong>/28 255.255.255.240</strong><br><strong>/27 255.255.255.224</strong><br><strong>/26 255.255.255.192</strong><br><strong>/25 255.255.255.128</strong></p>
-<p><strong>案例二</strong><br>B类网络子网划分<br> 181.1.1.1 默认子网掩码值 255.255.0.0/16</p>
+<h2 id="端口安全"><a href="#端口安全" class="headerlink" title="端口安全"></a>端口安全</h2><h3 id="交换机的五种攻击"><a href="#交换机的五种攻击" class="headerlink" title="交换机的五种攻击"></a>交换机的五种攻击</h3><p><strong>VLAN跳跃攻击</strong><br><strong>生成树攻击</strong><br><strong>MAC表洪水攻击</strong><br>泛洪：广播<br>1.限制MAC地址<br><strong>配置</strong><br>Switch&gt;en<br>Switch#config t<br>Switch(config)#int f0/1<br>Switch(config-if)#sw mo acc//设置模式为ACCESS<br>Switch(config-if)#switchport port-security //开启端口安全<br>Switch(config-if)#switchport port-security mac-address 00E0.8F09.42EA//绑定MAC地址<br>Switch(config-if)#switchport port-security violation shutdown //安全违例模式为关闭<br>violation的模式:<br> protect:不回应<br> restrict:拒绝<br> shutdown:关闭<br>2.限制交换机端口的最大连接数<br>Switch(config-if)#switchport port-security maximum<br><strong>ARP攻击</strong><br><strong>VTP攻击</strong><br>1.通过域名来同步<br>2.服务端和客户端模式（服务端(s)，客户端(c)，透明(t)）<br>|  | server | client | tranpatent |<br>|–|——–|——–|————|<br>| 增删改vlan信息 | v | x | v |<br>| 转发VTP信息 | v | v | v |<br>| 同步VTP信息 | v | v | x |<br>| 保存在NVRAM | v | x | v |</p>
+<p>在VTP中谁与谁同步，不是有角色决定，而是由版本号决定（大的决定小的）<br><strong>配置VTP</strong><br>客户端需要写域名<br>密码<br>A-B，都不加密码，A创建vlan，B可以学习<br>A添加密码，B不加密码，A创建vlan，B无法学习<br>A和B都添加密码，且相同，可以学习  </p>
+<p>Switch(config)#int f0/24<br>Switch(config-if)#sw mo acc<br>Switch(config-if)#sw mo trunk</p>
+<p>SW1(config)#vtp domain zlt<br>SW1(config)#vtp mode server<br>SW1(config)#vtp password ***** </p>
+<h2 id="STP生成树协议"><a href="#STP生成树协议" class="headerlink" title="STP生成树协议"></a>STP生成树协议</h2><p>逻辑上断开环路，防止广播风暴的产生。<br>当线路出现故障，断开的接口被激活，恢复通信，起备份线路的作用。</p>
+<h3 id="STP算法"><a href="#STP算法" class="headerlink" title="STP算法"></a>STP算法</h3><p>STP将一个环形网络生成无环拓朴的步骤：<br> 第一步：选择根网桥（Root Bridge）<br> 第二步：选择根端口（Root Ports）<br> 第三步：选择指端口（Designated Ports）</p>
+<h3 id="选择根网桥"><a href="#选择根网桥" class="headerlink" title="选择根网桥"></a>选择根网桥</h3><h4 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a>如何选择</h4><p>(1)什么是BID<br>:BID=优先级+MAC地址<br>默认优先级 32768<br>(2)如何查看VLAN生成树<br>Switch#sh spanning-tree<br>(3)如何查看MAC地址<br>SW1#sh version </p>
+<p>根据网桥ID（BID）选择根网桥，谁的优先级小，谁就是根桥。如果优先级相同，谁的MAC地址小谁就是根桥。</p>
+<p>###选择根端口<br>在非根网桥上选择一个到根网桥最近的端口作为根端口 选择根端口的依据是：<br>根路径成本（cost值）【从端口出发到根桥】最低<br>直连网桥的网桥ID最小<br>直连网桥的端口ID最小   </p>
+<p>###选择指定端口<br>非根桥上的指定端口：<br>根路径成本【从非根桥到根桥】最低<br>端口所在的网桥的ID值较小<br>直连网桥的端口ID值较小  </p>
+<h2 id="BPDU"><a href="#BPDU" class="headerlink" title="BPDU"></a>BPDU</h2><h3 id="什么是BPDU"><a href="#什么是BPDU" class="headerlink" title="什么是BPDU"></a>什么是BPDU</h3><p>交换机之间使用BPDU来交换STP信息，BPDU（Bridge Protocol Data Unit）使用组播发送BPDU，组播地址为：01-80-c2-00-00-00。<br>BPDU分为2种类型：<br> 配置BPDU － 用于生成树计算<br> 拓朴变更通告（TCN）BPDU － 用于通告网络拓朴的变化  </p>
+<h2 id="生成树端口的状态"><a href="#生成树端口的状态" class="headerlink" title="生成树端口的状态"></a>生成树端口的状态</h2><table>
+<thead>
+<tr>
+<th>状态</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>转发(Forwarding)</td>
+<td>发送和接受用户数据</td>
+</tr>
+<tr>
+<td>学习(Learning)</td>
+<td>构建网桥表</td>
+</tr>
+<tr>
+<td>侦听(Listening)</td>
+<td>构建“活动”拓扑选举根桥 根端口 指定端口</td>
+</tr>
+<tr>
+<td>阻塞(Blocking)</td>
+<td>只接收BPDU</td>
+</tr>
+<tr>
+<td>禁用(Disable)</td>
+<td>强制关闭</td>
+</tr>
+</tbody></table>
+<h2 id="PVST（按VLAN生成树）"><a href="#PVST（按VLAN生成树）" class="headerlink" title="PVST（按VLAN生成树）"></a>PVST（按VLAN生成树）</h2><h3 id="什么是PVST"><a href="#什么是PVST" class="headerlink" title="什么是PVST"></a>什么是PVST</h3><p> PVST是Cisco私有的，为每个VLAN构造一棵生成树</p>
+<h3 id="PVST的配置命令"><a href="#PVST的配置命令" class="headerlink" title="PVST的配置命令"></a>PVST的配置命令</h3><p>启用生成树：Switch(config)#spanning-tree vlan vlan-list<br>设置根网桥：Switch(config)#spanning-tree vlan vlan-list root primary | secondary<br>-设置为primary后，优先级变成24576<br>-设置为secondary后， 优先级变成28672<br>修改网桥的优先级：Switch(config)#spanning-tree vlan vlan-list priority Bridge-priority<br>-优先级的值为4096的倍数<br>修改端口成本：Switch(config-if)#spanning-tree vlan vlan-list cost cost<br>修改端口优先级：Switch(config-if)#spanning-tree vlan vlan-list port-priority priority<br>配置上行速链路：Switch(config)#spanning-tree uplinkfast</p>
+<p>配置端口速链路：Switch(config-if)#spanning-tree portfast<br>查看生成树的配置：Switch#show spanning-tree<br>查看某个VLAN的生成树详细信息：Switch#show spanning-tree vlan vlan-id detail</p>
 <hr>
-<p>1.假设借2位，那么子网掩码值：255.255.192.0/18<br>2.划分了2^2=4个网络<br>3.快大小：256-192=64<br>4.有哪些网络？<br>181.1.0.0<br> 网络号：181.1.0.0/18<br> 广播号：181.1.63.255<br> 可用地址：181.1.0.1-181.1.63.254</p>
-<hr>
-<p>181.1.64.0<br> 步骤如上<br>181.1.128.0<br> 步骤如上<br>181.1.192.0<br> 步骤如上</p>
-<h2 id="地址汇总"><a href="#地址汇总" class="headerlink" title="地址汇总"></a>地址汇总</h2><p>1.变化的字节<br>2.块大小<br>3.掩码值 256-块大小</p>
-<p><img src="https://wx1.sinaimg.cn/small/006ZIQqwgy1g9kxx4jel2j30j8085glx.jpg" alt></p>
-<p>变化的字节在哪里？第三字节<br>块大小？  4<br>掩码值：256-块大小<br>172.16.4.0/22<br>可用地址：172.16.4.1—172.16.7.254  </p>
+<p>案例:<br>让SW1作vlan10的根桥，让SW2作vlan10的备份根<br>SW1(config)#spanning-tree vlan 10 root primary<br>SW2(config)#spanning-tree vlan 10 root secondary<br>让SW2作vlan20的根桥，让SW2作vlan20的备份根<br>SW2(config)#spanning-tree vlan 20 root primary<br>SW1(config)#spanning-tree vlan 20 root secondary<br><strong>这样做可以将所有的线路都利用起来，并实现负载均衡和 线路备份</strong></p>
+<h2 id="以太网端口聚合"><a href="#以太网端口聚合" class="headerlink" title="以太网端口聚合"></a>以太网端口聚合</h2><p>1.增加带宽<br>2.增加冗余链路<br>3.实现负载均衡</p>
+<h3 id="端口聚合配置："><a href="#端口聚合配置：" class="headerlink" title="端口聚合配置："></a>端口聚合配置：</h3><p>Switch(config)#int port-channel 1<br>Switch(config-if)#switchport mode trunk<br>Switch(config)#int range f0/1-2<br>Switch(config-if-range)#channel-group 1 mode on</p>
+<h3 id="配置流量均衡"><a href="#配置流量均衡" class="headerlink" title="配置流量均衡"></a>配置流量均衡</h3><p>Switch(config)#int f0/1<br>Switch(config-if)#spanning-tree vlan 10 port-priority 16<br>Switch(config-if)#spanning-tree vlan 20 port-priority 32<br>Switch(config)#int f0/2<br>Switch(config-if)#spanning-tree vlan 10 port-priority 32<br>Switch(config-if)#spanning-tree vlan 20 port-priority 16</p>
 
       
 
@@ -295,7 +313,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/04/IPV4编制/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/05/生成树/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -309,18 +327,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/12/05/生成树/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          生成树和端口安全
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/04/dos内容/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+    <a href="/2019/12/04/IPV4编制/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">IPv4编制</div>
       <i class="icon-circle-right"></i>
     </a>
   

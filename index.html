@@ -152,6 +152,127 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-生成树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/05/生成树/">生成树和端口安全</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/05/生成树/" class="archive-article-date">
+  	<time datetime="2019-12-05T08:29:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h2 id="端口安全"><a href="#端口安全" class="headerlink" title="端口安全"></a>端口安全</h2><h3 id="交换机的五种攻击"><a href="#交换机的五种攻击" class="headerlink" title="交换机的五种攻击"></a>交换机的五种攻击</h3><p><strong>VLAN跳跃攻击</strong><br><strong>生成树攻击</strong><br><strong>MAC表洪水攻击</strong><br>泛洪：广播<br>1.限制MAC地址<br><strong>配置</strong><br>Switch&gt;en<br>Switch#config t<br>Switch(config)#int f0/1<br>Switch(config-if)#sw mo acc//设置模式为ACCESS<br>Switch(config-if)#switchport port-security //开启端口安全<br>Switch(config-if)#switchport port-security mac-address 00E0.8F09.42EA//绑定MAC地址<br>Switch(config-if)#switchport port-security violation shutdown //安全违例模式为关闭<br>violation的模式:<br> protect:不回应<br> restrict:拒绝<br> shutdown:关闭<br>2.限制交换机端口的最大连接数<br>Switch(config-if)#switchport port-security maximum<br><strong>ARP攻击</strong><br><strong>VTP攻击</strong><br>1.通过域名来同步<br>2.服务端和客户端模式（服务端(s)，客户端(c)，透明(t)）<br>|  | server | client | tranpatent |<br>|–|——–|——–|————|<br>| 增删改vlan信息 | v | x | v |<br>| 转发VTP信息 | v | v | v |<br>| 同步VTP信息 | v | v | x |<br>| 保存在NVRAM | v | x | v |</p>
+<p>在VTP中谁与谁同步，不是有角色决定，而是由版本号决定（大的决定小的）<br><strong>配置VTP</strong><br>客户端需要写域名<br>密码<br>A-B，都不加密码，A创建vlan，B可以学习<br>A添加密码，B不加密码，A创建vlan，B无法学习<br>A和B都添加密码，且相同，可以学习  </p>
+<p>Switch(config)#int f0/24<br>Switch(config-if)#sw mo acc<br>Switch(config-if)#sw mo trunk</p>
+<p>SW1(config)#vtp domain zlt<br>SW1(config)#vtp mode server<br>SW1(config)#vtp password ***** </p>
+<h2 id="STP生成树协议"><a href="#STP生成树协议" class="headerlink" title="STP生成树协议"></a>STP生成树协议</h2><p>逻辑上断开环路，防止广播风暴的产生。<br>当线路出现故障，断开的接口被激活，恢复通信，起备份线路的作用。</p>
+<h3 id="STP算法"><a href="#STP算法" class="headerlink" title="STP算法"></a>STP算法</h3><p>STP将一个环形网络生成无环拓朴的步骤：<br> 第一步：选择根网桥（Root Bridge）<br> 第二步：选择根端口（Root Ports）<br> 第三步：选择指端口（Designated Ports）</p>
+<h3 id="选择根网桥"><a href="#选择根网桥" class="headerlink" title="选择根网桥"></a>选择根网桥</h3><h4 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a>如何选择</h4><p>(1)什么是BID<br>:BID=优先级+MAC地址<br>默认优先级 32768<br>(2)如何查看VLAN生成树<br>Switch#sh spanning-tree<br>(3)如何查看MAC地址<br>SW1#sh version </p>
+<p>根据网桥ID（BID）选择根网桥，谁的优先级小，谁就是根桥。如果优先级相同，谁的MAC地址小谁就是根桥。</p>
+<p>###选择根端口<br>在非根网桥上选择一个到根网桥最近的端口作为根端口 选择根端口的依据是：<br>根路径成本（cost值）【从端口出发到根桥】最低<br>直连网桥的网桥ID最小<br>直连网桥的端口ID最小   </p>
+<p>###选择指定端口<br>非根桥上的指定端口：<br>根路径成本【从非根桥到根桥】最低<br>端口所在的网桥的ID值较小<br>直连网桥的端口ID值较小  </p>
+<h2 id="BPDU"><a href="#BPDU" class="headerlink" title="BPDU"></a>BPDU</h2><h3 id="什么是BPDU"><a href="#什么是BPDU" class="headerlink" title="什么是BPDU"></a>什么是BPDU</h3><p>交换机之间使用BPDU来交换STP信息，BPDU（Bridge Protocol Data Unit）使用组播发送BPDU，组播地址为：01-80-c2-00-00-00。<br>BPDU分为2种类型：<br> 配置BPDU － 用于生成树计算<br> 拓朴变更通告（TCN）BPDU － 用于通告网络拓朴的变化  </p>
+<h2 id="生成树端口的状态"><a href="#生成树端口的状态" class="headerlink" title="生成树端口的状态"></a>生成树端口的状态</h2><table>
+<thead>
+<tr>
+<th>状态</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>转发(Forwarding)</td>
+<td>发送和接受用户数据</td>
+</tr>
+<tr>
+<td>学习(Learning)</td>
+<td>构建网桥表</td>
+</tr>
+<tr>
+<td>侦听(Listening)</td>
+<td>构建“活动”拓扑选举根桥 根端口 指定端口</td>
+</tr>
+<tr>
+<td>阻塞(Blocking)</td>
+<td>只接收BPDU</td>
+</tr>
+<tr>
+<td>禁用(Disable)</td>
+<td>强制关闭</td>
+</tr>
+</tbody></table>
+<h2 id="PVST（按VLAN生成树）"><a href="#PVST（按VLAN生成树）" class="headerlink" title="PVST（按VLAN生成树）"></a>PVST（按VLAN生成树）</h2><h3 id="什么是PVST"><a href="#什么是PVST" class="headerlink" title="什么是PVST"></a>什么是PVST</h3><p> PVST是Cisco私有的，为每个VLAN构造一棵生成树</p>
+<h3 id="PVST的配置命令"><a href="#PVST的配置命令" class="headerlink" title="PVST的配置命令"></a>PVST的配置命令</h3><p>启用生成树：Switch(config)#spanning-tree vlan vlan-list<br>设置根网桥：Switch(config)#spanning-tree vlan vlan-list root primary | secondary<br>-设置为primary后，优先级变成24576<br>-设置为secondary后， 优先级变成28672<br>修改网桥的优先级：Switch(config)#spanning-tree vlan vlan-list priority Bridge-priority<br>-优先级的值为4096的倍数<br>修改端口成本：Switch(config-if)#spanning-tree vlan vlan-list cost cost<br>修改端口优先级：Switch(config-if)#spanning-tree vlan vlan-list port-priority priority<br>配置上行速链路：Switch(config)#spanning-tree uplinkfast</p>
+<p>配置端口速链路：Switch(config-if)#spanning-tree portfast<br>查看生成树的配置：Switch#show spanning-tree<br>查看某个VLAN的生成树详细信息：Switch#show spanning-tree vlan vlan-id detail</p>
+<hr>
+<p>案例:<br>让SW1作vlan10的根桥，让SW2作vlan10的备份根<br>SW1(config)#spanning-tree vlan 10 root primary<br>SW2(config)#spanning-tree vlan 10 root secondary<br>让SW2作vlan20的根桥，让SW2作vlan20的备份根<br>SW2(config)#spanning-tree vlan 20 root primary<br>SW1(config)#spanning-tree vlan 20 root secondary<br><strong>这样做可以将所有的线路都利用起来，并实现负载均衡和 线路备份</strong></p>
+<h2 id="以太网端口聚合"><a href="#以太网端口聚合" class="headerlink" title="以太网端口聚合"></a>以太网端口聚合</h2><p>1.增加带宽<br>2.增加冗余链路<br>3.实现负载均衡</p>
+<h3 id="端口聚合配置："><a href="#端口聚合配置：" class="headerlink" title="端口聚合配置："></a>端口聚合配置：</h3><p>Switch(config)#int port-channel 1<br>Switch(config-if)#switchport mode trunk<br>Switch(config)#int range f0/1-2<br>Switch(config-if-range)#channel-group 1 mode on</p>
+<h3 id="配置流量均衡"><a href="#配置流量均衡" class="headerlink" title="配置流量均衡"></a>配置流量均衡</h3><p>Switch(config)#int f0/1<br>Switch(config-if)#spanning-tree vlan 10 port-priority 16<br>Switch(config-if)#spanning-tree vlan 20 port-priority 32<br>Switch(config)#int f0/2<br>Switch(config-if)#spanning-tree vlan 10 port-priority 32<br>Switch(config-if)#spanning-tree vlan 20 port-priority 16</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">系统安全</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/05/生成树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-IPV4编制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
