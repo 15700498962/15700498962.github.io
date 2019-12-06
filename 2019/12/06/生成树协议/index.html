@@ -1,61 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>
-    生成树协议 |
+    <meta charset="utf-8">
     
-    你好</title>
-  
-    <link rel="shortcut icon" href="/favicon.ico">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/technology.css">
-  
-    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-  
-  <script src="/js/pace.min.js"></script>
+    <title>生成树协议 | 你好</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content>
+    <meta name="author" content>
+    <link rel="icon" href="/favicon/favicon.ico">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/tagplugins.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    
+
+
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="你好" type="application/atom+xml">
+    
 </head>
-</html>
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <section class="outer">
-  <article id="post-生成树协议" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  <div class="blog-header">
+   <a id="menu-nav-icon"><img src="/image/menu.png"/></a>
+   <div class="nav-container">
+     <nav id="main-nav">
+       
+         <a class="main-nav-link" href="/">Home</a>
+       
+         <a class="main-nav-link" href="/archives">Archives</a>
+       
+     </nav>
+   </div>
+   <!--
+   <div id="search-form-wrap">
+     <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+   </div>
+ -->
+    <h1 class="blog-title">你好</h1>
+    <p class="lead blog-description"></p>
+</div>
 
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      生成树协议
+  <div id='main-part'>
+      <div class="main">
+<div class="blog-post">
+    <!-- Title -->
+    <h1 class="blog-post-title">
+        <a href="/2019/12/06/生成树协议/">
+            生成树协议
+        </a>
     </h1>
-  
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/12/06/生成树协议/" class="article-date">
-  <time datetime="2019-12-06T03:26:29.000Z" itemprop="datePublished">2019-12-06</time>
-</a>
+    <!-- Date and Author -->
+    <p class="blog-post-meta">
+        2019-12-06
         
-      </div>
+    </p>
+
     
 
-    <div class="article-entry" itemprop="articleBody">
-      
-
-      
-
-      
-        <h2 id="端口安全"><a href="#端口安全" class="headerlink" title="端口安全"></a>端口安全</h2><a id="more"></a>
+    <!-- Content -->
+    <h2 id="端口安全"><a href="#端口安全" class="headerlink" title="端口安全"></a>端口安全</h2><a id="more"></a>
 <h3 id="交换机的五种攻击"><a href="#交换机的五种攻击" class="headerlink" title="交换机的五种攻击"></a>交换机的五种攻击</h3><p><strong>VLAN跳跃攻击</strong><br><strong>生成树攻击</strong><br><strong>MAC表洪水攻击</strong><br>泛洪：广播<br>1.限制MAC地址<br><strong>配置</strong><br>Switch&gt;en<br>Switch#config t<br>Switch(config)#int f0/1<br>Switch(config-if)#sw mo acc//设置模式为ACCESS<br>Switch(config-if)#switchport port-security //开启端口安全<br>Switch(config-if)#switchport port-security mac-address 00E0.8F09.42EA//绑定MAC地址<br>Switch(config-if)#switchport port-security violation shutdown //安全违例模式为关闭<br>violation的模式:<br> protect:不回应<br> restrict:拒绝<br> shutdown:关闭<br>2.限制交换机端口的最大连接数<br>Switch(config-if)#switchport port-security maximum<br><strong>ARP攻击</strong><br><strong>VTP攻击</strong><br>1.通过域名来同步<br>2.服务端和客户端模式（服务端(s)，客户端(c)，透明(t)）</p>
 <table>
 <thead>
@@ -138,55 +145,92 @@
 <h3 id="端口聚合配置："><a href="#端口聚合配置：" class="headerlink" title="端口聚合配置："></a>端口聚合配置：</h3><p>Switch(config)#int port-channel 1<br>Switch(config-if)#switchport mode trunk<br>Switch(config)#int range f0/1-2<br>Switch(config-if-range)#channel-group 1 mode on</p>
 <h3 id="配置流量均衡"><a href="#配置流量均衡" class="headerlink" title="配置流量均衡"></a>配置流量均衡</h3><p>Switch(config)#int f0/1<br>Switch(config-if)#spanning-tree vlan 10 port-priority 16<br>Switch(config-if)#spanning-tree vlan 20 port-priority 32<br>Switch(config)#int f0/2<br>Switch(config-if)#spanning-tree vlan 10 port-priority 32<br>Switch(config-if)#spanning-tree vlan 20 port-priority 16</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/06/生成树协议/" data-id="ck3tvqvy70006qoxcl29bh81s"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
 
-    </footer>
-
+    <!-- Social share choices -->
+    
+  <div id="social-share">
+    <a data-url="http://yoursite.com/2019/12/06/生成树协议/" href="https://plus.google.com/share?url=" class="googleplus"><img src="/image/googleplusicon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2019/12/06/生成树协议/" href="https://twitter.com/intent/tweet?url=" class="twitter"><img src="/image/twittericon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2019/12/06/生成树协议/" href="http://pinterest.com/pin/create/button/?url=" class="pinterest"><img src="/image/pinteresticon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2019/12/06/生成树协议/" href="https://www.facebook.com/sharer/sharer.php?u=" class="facebook"><img src="/image/facebookicon.png" alt=""/></a>
   </div>
 
-  
+
+
+
+
+<!--
+
+
+https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/12/06/生成树协议/
+http://yoursite.com/2019/12/06/%E7%94%9F%E6%88%90%E6%A0%91%E5%8D%8F%E8%AE%AE/
+-->
+
+
+
+    <hr />
+
+
+    <!-- Tags and Categories links -->
     
-  <nav class="article-nav">
+
     
+
+
+<div class="blog-tags-container">
+    <span><img src="/image/tagsicon.png" alt=""/></span>
+    <a href="/tags/系统安全/">#系统安全</a>
+</div>
+
+
+
+    <!-- Comment using disqus -->
     
-      <a href="/2019/12/04/IPV4编制/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">IPv4编制方案</div>
-      </a>
-    
-  </nav>
 
+</div>
+</div>
 
-  
-
-  
-    
-  
-
-</article>
-
-
-
-</section>
-    </div>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/lazyload.min.js"></script>
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
-
-
-  <script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/technology.js"></script>
 
   </div>
+  <!-- Footer -->
+  <div id="footer">
+  <div id="footer-social">
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p id="footer-info">
+    &copy; 2019 John Doe<br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> -
+    Theme <a href="https://github.com/Suolawangzai/hexo-theme-nebula" target="_blank">nebula</a>
+  </p>
+
+  <div id="busuanzi">
+    <span id="busuanzi_container_site_pv">
+      &hearts;
+    Total visits: <span id="busuanzi_value_site_pv"></span>
+    </span>
+  </div>
+  <!--
+  <div id="footer-info">
+    &copy; 2019 John Doe<br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  </div>
+-->
+</div>
+
+  <!-- After footer scripts -->
+  <!-- Disqus Comments -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="/js/main.js"></script>
+
 </body>
+
 </html>
