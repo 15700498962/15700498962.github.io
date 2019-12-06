@@ -152,20 +152,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-生成树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-生成树协议" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/05/生成树/">生成树和端口安全</a>
+      <a class="article-title" href="/2019/12/06/生成树协议/">生成树协议</a>
     </h1>
   
 
         
-        <a href="/2019/12/05/生成树/" class="archive-article-date">
-  	<time datetime="2019-12-05T08:29:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-05</time>
+        <a href="/2019/12/06/生成树协议/" class="archive-article-date">
+  	<time datetime="2019-12-06T03:26:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-06</time>
 </a>
         
       </header>
@@ -174,7 +174,41 @@
       
         <a id="more"></a>
 
-<h2 id="端口安全"><a href="#端口安全" class="headerlink" title="端口安全"></a>端口安全</h2><h3 id="交换机的五种攻击"><a href="#交换机的五种攻击" class="headerlink" title="交换机的五种攻击"></a>交换机的五种攻击</h3><p><strong>VLAN跳跃攻击</strong><br><strong>生成树攻击</strong><br><strong>MAC表洪水攻击</strong><br>泛洪：广播<br>1.限制MAC地址<br><strong>配置</strong><br>Switch&gt;en<br>Switch#config t<br>Switch(config)#int f0/1<br>Switch(config-if)#sw mo acc//设置模式为ACCESS<br>Switch(config-if)#switchport port-security //开启端口安全<br>Switch(config-if)#switchport port-security mac-address 00E0.8F09.42EA//绑定MAC地址<br>Switch(config-if)#switchport port-security violation shutdown //安全违例模式为关闭<br>violation的模式:<br> protect:不回应<br> restrict:拒绝<br> shutdown:关闭<br>2.限制交换机端口的最大连接数<br>Switch(config-if)#switchport port-security maximum<br><strong>ARP攻击</strong><br><strong>VTP攻击</strong><br>1.通过域名来同步<br>2.服务端和客户端模式（服务端(s)，客户端(c)，透明(t)）<br>|  | server | client | tranpatent |<br>|–|——–|——–|————|<br>| 增删改vlan信息 | v | x | v |<br>| 转发VTP信息 | v | v | v |<br>| 同步VTP信息 | v | v | x |<br>| 保存在NVRAM | v | x | v |</p>
+<h2 id="端口安全"><a href="#端口安全" class="headerlink" title="端口安全"></a>端口安全</h2><h3 id="交换机的五种攻击"><a href="#交换机的五种攻击" class="headerlink" title="交换机的五种攻击"></a>交换机的五种攻击</h3><p><strong>VLAN跳跃攻击</strong><br><strong>生成树攻击</strong><br><strong>MAC表洪水攻击</strong><br>泛洪：广播<br>1.限制MAC地址<br><strong>配置</strong><br>Switch&gt;en<br>Switch#config t<br>Switch(config)#int f0/1<br>Switch(config-if)#sw mo acc//设置模式为ACCESS<br>Switch(config-if)#switchport port-security //开启端口安全<br>Switch(config-if)#switchport port-security mac-address 00E0.8F09.42EA//绑定MAC地址<br>Switch(config-if)#switchport port-security violation shutdown //安全违例模式为关闭<br>violation的模式:<br> protect:不回应<br> restrict:拒绝<br> shutdown:关闭<br>2.限制交换机端口的最大连接数<br>Switch(config-if)#switchport port-security maximum<br><strong>ARP攻击</strong><br><strong>VTP攻击</strong><br>1.通过域名来同步<br>2.服务端和客户端模式（服务端(s)，客户端(c)，透明(t)）</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>server</th>
+<th>client</th>
+<th>tranpatent</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>增删改vlan信息</td>
+<td>v</td>
+<td>x</td>
+<td>v</td>
+</tr>
+<tr>
+<td>转发VTP信息</td>
+<td>v</td>
+<td>v</td>
+<td>v</td>
+</tr>
+<tr>
+<td>同步VTP信息</td>
+<td>v</td>
+<td>v</td>
+<td>x</td>
+</tr>
+<tr>
+<td>保存在NVRAM</td>
+<td>v</td>
+<td>x</td>
+<td>v</td>
+</tr>
+</tbody></table>
 <p>在VTP中谁与谁同步，不是有角色决定，而是由版本号决定（大的决定小的）<br><strong>配置VTP</strong><br>客户端需要写域名<br>密码<br>A-B，都不加密码，A创建vlan，B可以学习<br>A添加密码，B不加密码，A创建vlan，B无法学习<br>A和B都添加密码，且相同，可以学习  </p>
 <p>Switch(config)#int f0/24<br>Switch(config-if)#sw mo acc<br>Switch(config-if)#sw mo trunk</p>
 <p>SW1(config)#vtp domain zlt<br>SW1(config)#vtp mode server<br>SW1(config)#vtp password ***** </p>
@@ -229,397 +263,11 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">系统安全</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/05/生成树/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-IPV4编制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/04/IPV4编制/">IPv4编制</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/04/IPV4编制/" class="archive-article-date">
-  	<time datetime="2019-12-04T11:51:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-<h1 id="IPv4编制方案"><a href="#IPv4编制方案" class="headerlink" title="IPv4编制方案"></a>IPv4编制方案</h1><p>由32为二进制组成，划分为4个字节，中间用.隔开，每组8位，以十进制表示，分为网络地址和主机地址两个部分。</p>
-<p>二进制只有两种状态 0和1</p>
-<p>IPV4一共有：2^32大约是40多亿个地址<br>IP地址在网络中是唯一的，不能重复。<br>对地址进行分类<br>分公有地址、私有地址、保留地址</p>
-<p>NAT网络地址转换 </p>
-<h2 id="IP地址分类"><a href="#IP地址分类" class="headerlink" title="IP地址分类"></a>IP地址分类</h2><h3 id="A类网络地址范围"><a href="#A类网络地址范围" class="headerlink" title="A类网络地址范围"></a>A类网络地址范围</h3><p><strong>第一个字节的第一位必须是0，第一个字节的取值是0-127</strong><br>即：0xxxxxxx<br><strong>前八位是网络号</strong><br>1.1.1.1/8 网络号是8位 255.0.0.0<br>网络号（表示地址具体在哪个网络）：1.0.0.0<br>广播地址：1.255.255.255<br>在这网络中有多少地址：2^24<br>有效地址：2^24-2<br>子网掩码：255.0.0.0 斜杠表示法:1.1.1.1/8</p>
-<h3 id="B类网络地址范围"><a href="#B类网络地址范围" class="headerlink" title="B类网络地址范围"></a>B类网络地址范围</h3><p><strong>第一个字节的第一位必须是1，第二位必须是0，第一个字节的取值是128-191</strong></p>
-<p>181.1.1.1/16<br>网络地址：181.1.0.0<br>广播地址：181.1.255.255<br>有效地址：2^16-2</p>
-<h3 id="C类网络地址范围"><a href="#C类网络地址范围" class="headerlink" title="C类网络地址范围"></a>C类网络地址范围</h3><p><strong>第一个字节的第一位必须是1，第三位必须是0，第一个字节的取值是192-223</strong></p>
-<p>192.168.1.1/24<br>网络地址：192.168.1.0<br>广播地址：192.168.1.255<br>有效地址：2^8-2</p>
-<h3 id="D类网络地址范围"><a href="#D类网络地址范围" class="headerlink" title="D类网络地址范围"></a>D类网络地址范围</h3><p>第一个字节位224-239，组播地址</p>
-<h3 id="E类网络地址范围"><a href="#E类网络地址范围" class="headerlink" title="E类网络地址范围"></a>E类网络地址范围</h3><p>第一个字节位240-255，科学地址</p>
-<h2 id="保留地址"><a href="#保留地址" class="headerlink" title="保留地址"></a>保留地址</h2><p>网络地址全0 表示当前网络<br>网络地址全1 表示所有网络<br>地址为127.0.0.1 保留用于环回测试<br>节点地址全0  表示网络地址<br>节点地址全1 表示指定网络中的所有节点<br>整个IP地址全为0   思科路由器用它来指定默认路由，也可能表示任何网络<br>整个IP地址全为1   到当前网络中所有节点的广播，有时称为“全1广播”或限定广播即：255.255.255.255</p>
-<h2 id="各类网络地址中网络数和主机数"><a href="#各类网络地址中网络数和主机数" class="headerlink" title="各类网络地址中网络数和主机数"></a>各类网络地址中网络数和主机数</h2><p>A 类网络地址：<br>　　　　实际可用的A类网络地址数为：2^7=128<br>                      合法的主机数为：2 ^24－2＝16777214<br>B类网络地址：<br>　　　　实际可用的B类网络地址数为：2^14=16384<br>                     合法的主机数为：2^16-2=65534<br>C类网络地址：<br>　　　　实际可用的C类网络地址数为：2^21=2097152<br>                     合法的主机数为：2^8-2=254</p>
-<h2 id="私有地址"><a href="#私有地址" class="headerlink" title="私有地址"></a>私有地址</h2><p>A类：10.0.0.0<del>10.255.255.255<br>B类：172.16.0.0</del>172.31.255.255<br>C类：192.168.0.0~192.168.255.255</p>
-<p><strong>子网划分:将大的网络划分成若干个小的网络，尽量减少广播风暴，提高网络效率</strong></p>
-<h3 id="如何进行子网划分"><a href="#如何进行子网划分" class="headerlink" title="如何进行子网划分"></a>如何进行子网划分</h3><p>C类地址：192.168.1.0/24<br>网络号:192.168.1.0<br>广播号192.168.1.255<br>可用地址：1.1-1.254<br>向主机位借位?<br><strong>案例一：</strong><br>如果借2（n）位，那么划分几个网？2^1(2^n)个网络<br>划分成了那几个网络？<br>192.168.1.0/25<br>子网掩码？<br>255.255.255.128<br>块大小（每个小网络的地址总数）:256-128=128</p>
-<p>分成了那些网络？<br>192.168.1.0/25<br> 网络号：192.168.1.0/25<br> 广播地址（网络中最后一个地址）:    192.168.1.127/25</p>
-<p>192.168.1.128/25<br> 网络号：192.168.1.128/25<br> 广播地址（网络中最后一个地址）:    192.168.1.255/25</p>
-<p><strong>/30 255.255.255.252</strong><br><strong>/29 255.255.255.248</strong><br><strong>/28 255.255.255.240</strong><br><strong>/27 255.255.255.224</strong><br><strong>/26 255.255.255.192</strong><br><strong>/25 255.255.255.128</strong></p>
-<p><strong>案例二</strong><br>B类网络子网划分<br> 181.1.1.1 默认子网掩码值 255.255.0.0/16</p>
-<hr>
-<p>1.假设借2位，那么子网掩码值：255.255.192.0/18<br>2.划分了2^2=4个网络<br>3.快大小：256-192=64<br>4.有哪些网络？<br>181.1.0.0<br> 网络号：181.1.0.0/18<br> 广播号：181.1.63.255<br> 可用地址：181.1.0.1-181.1.63.254</p>
-<hr>
-<p>181.1.64.0<br> 步骤如上<br>181.1.128.0<br> 步骤如上<br>181.1.192.0<br> 步骤如上</p>
-<h2 id="地址汇总"><a href="#地址汇总" class="headerlink" title="地址汇总"></a>地址汇总</h2><p>1.变化的字节<br>2.块大小<br>3.掩码值 256-块大小</p>
-<p><img src="https://wx1.sinaimg.cn/small/006ZIQqwgy1g9kxx4jel2j30j8085glx.jpg" alt></p>
-<p>变化的字节在哪里？第三字节<br>块大小？  4<br>掩码值：256-块大小<br>172.16.4.0/22<br>可用地址：172.16.4.1—172.16.7.254  </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">系统安全</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/04/IPV4编制/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-dos内容" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>title: dos内容<br>date: 2019-12-03 19:51:44<br>modified:  2019-09-07 11:51:44<br>tag:</p>
-<ul>
-<li>系统安全</li>
-<li>CVE-2019-0708
-        
-          <a class="article-more-a" href="/2019/12/04/dos内容/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/04/dos内容/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="title-你好呀！！！！！！！"><a href="#title-你好呀！！！！！！！" class="headerlink" title="title:你好呀！！！！！！！"></a>title:你好呀！！！！！！！</h2><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/03/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-网络安全" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/03/网络安全/">计算机的发展</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/03/网络安全/" class="archive-article-date">
-  	<time datetime="2019-12-03T03:51:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="CVE-2019-12-03"><a href="#CVE-2019-12-03" class="headerlink" title="CVE _2019_12_03"></a>CVE _2019_12_03</h3>
-        
-          <a class="article-more-a" href="/2019/12/03/网络安全/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">系统安全</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CVE-2019-0708</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/03/网络安全/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-CVE-2019-0708" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/07/CVE-2019-0708/">漏洞复现</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/07/CVE-2019-0708/" class="archive-article-date">
-  	<time datetime="2019-09-07T03:51:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="CVE-2019-07-08"><a href="#CVE-2019-07-08" class="headerlink" title="CVE _2019_07_08"></a>CVE _2019_07_08</h3>
-        
-          <a class="article-more-a" href="/2019/09/07/CVE-2019-0708/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">系统安全</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CVE-2019-0708</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/07/CVE-2019-0708/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/12/06/生成树协议/">展开全文 >></a>
         </p>
       
 
@@ -740,14 +388,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CVE-2019-0708</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
