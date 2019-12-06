@@ -173,7 +173,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <a id="more"></a>
-
 <h2 id="端口安全"><a href="#端口安全" class="headerlink" title="端口安全"></a>端口安全</h2><h3 id="交换机的五种攻击"><a href="#交换机的五种攻击" class="headerlink" title="交换机的五种攻击"></a>交换机的五种攻击</h3><p><strong>VLAN跳跃攻击</strong><br><strong>生成树攻击</strong><br><strong>MAC表洪水攻击</strong><br>泛洪：广播<br>1.限制MAC地址<br><strong>配置</strong><br>Switch&gt;en<br>Switch#config t<br>Switch(config)#int f0/1<br>Switch(config-if)#sw mo acc//设置模式为ACCESS<br>Switch(config-if)#switchport port-security //开启端口安全<br>Switch(config-if)#switchport port-security mac-address 00E0.8F09.42EA//绑定MAC地址<br>Switch(config-if)#switchport port-security violation shutdown //安全违例模式为关闭<br>violation的模式:<br> protect:不回应<br> restrict:拒绝<br> shutdown:关闭<br>2.限制交换机端口的最大连接数<br>Switch(config-if)#switchport port-security maximum<br><strong>ARP攻击</strong><br><strong>VTP攻击</strong><br>1.通过域名来同步<br>2.服务端和客户端模式（服务端(s)，客户端(c)，透明(t)）</p>
 <table>
 <thead>
