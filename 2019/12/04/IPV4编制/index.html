@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    IPv4编制方案 |
+    
+    你好</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-IPV4编制" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      IPv4编制方案
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/12/04/IPV4编制/" class="article-date">
+  <time datetime="2019-12-04T11:51:44.000Z" itemprop="datePublished">2019-12-04</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h1 id="IPv4编制方案"><a href="#IPv4编制方案" class="headerlink" title="IPv4编制方案"></a>IPv4编制方案</h1><a id="more"></a>
+<p>   由32为二进制组成，划分为4个字节，中间用.隔开，每组8位，以十进制表示，分为网络地址和主机地址两个部分。</p>
+<p>二进制只有两种状态 0和1</p>
+<p>IPV4一共有：2^32大约是40多亿个地址<br>IP地址在网络中是唯一的，不能重复。<br>对地址进行分类<br>分公有地址、私有地址、保留地址</p>
+<p>NAT网络地址转换 </p>
+<h2 id="IP地址分类"><a href="#IP地址分类" class="headerlink" title="IP地址分类"></a>IP地址分类</h2><h3 id="A类网络地址范围"><a href="#A类网络地址范围" class="headerlink" title="A类网络地址范围"></a>A类网络地址范围</h3><p><strong>第一个字节的第一位必须是0，第一个字节的取值是0-127</strong><br>即：0xxxxxxx<br><strong>前八位是网络号</strong><br>1.1.1.1/8 网络号是8位 255.0.0.0<br>网络号（表示地址具体在哪个网络）：1.0.0.0<br>广播地址：1.255.255.255<br>在这网络中有多少地址：2^24<br>有效地址：2^24-2<br>子网掩码：255.0.0.0 斜杠表示法:1.1.1.1/8</p>
+<h3 id="B类网络地址范围"><a href="#B类网络地址范围" class="headerlink" title="B类网络地址范围"></a>B类网络地址范围</h3><p><strong>第一个字节的第一位必须是1，第二位必须是0，第一个字节的取值是128-191</strong></p>
+<p>181.1.1.1/16<br>网络地址：181.1.0.0<br>广播地址：181.1.255.255<br>有效地址：2^16-2</p>
+<h3 id="C类网络地址范围"><a href="#C类网络地址范围" class="headerlink" title="C类网络地址范围"></a>C类网络地址范围</h3><p><strong>第一个字节的第一位必须是1，第三位必须是0，第一个字节的取值是192-223</strong></p>
+<p>192.168.1.1/24<br>网络地址：192.168.1.0<br>广播地址：192.168.1.255<br>有效地址：2^8-2</p>
+<h3 id="D类网络地址范围"><a href="#D类网络地址范围" class="headerlink" title="D类网络地址范围"></a>D类网络地址范围</h3><p>第一个字节位224-239，组播地址</p>
+<h3 id="E类网络地址范围"><a href="#E类网络地址范围" class="headerlink" title="E类网络地址范围"></a>E类网络地址范围</h3><p>第一个字节位240-255，科学地址</p>
+<h2 id="保留地址"><a href="#保留地址" class="headerlink" title="保留地址"></a>保留地址</h2><p>网络地址全0 表示当前网络<br>网络地址全1 表示所有网络<br>地址为127.0.0.1 保留用于环回测试<br>节点地址全0  表示网络地址<br>节点地址全1 表示指定网络中的所有节点<br>整个IP地址全为0   思科路由器用它来指定默认路由，也可能表示任何网络<br>整个IP地址全为1   到当前网络中所有节点的广播，有时称为“全1广播”或限定广播即：255.255.255.255</p>
+<h2 id="各类网络地址中网络数和主机数"><a href="#各类网络地址中网络数和主机数" class="headerlink" title="各类网络地址中网络数和主机数"></a>各类网络地址中网络数和主机数</h2><p>A 类网络地址：<br>　　　　实际可用的A类网络地址数为：2^7=128<br>                      合法的主机数为：2 ^24－2＝16777214<br>B类网络地址：<br>　　　　实际可用的B类网络地址数为：2^14=16384<br>                     合法的主机数为：2^16-2=65534<br>C类网络地址：<br>　　　　实际可用的C类网络地址数为：2^21=2097152<br>                     合法的主机数为：2^8-2=254</p>
+<h2 id="私有地址"><a href="#私有地址" class="headerlink" title="私有地址"></a>私有地址</h2><p>A类：10.0.0.0<del>10.255.255.255<br>B类：172.16.0.0</del>172.31.255.255<br>C类：192.168.0.0~192.168.255.255</p>
+<p><strong>子网划分:将大的网络划分成若干个小的网络，尽量减少广播风暴，提高网络效率</strong></p>
+<h3 id="如何进行子网划分"><a href="#如何进行子网划分" class="headerlink" title="如何进行子网划分"></a>如何进行子网划分</h3><p>C类地址：192.168.1.0/24<br>网络号:192.168.1.0<br>广播号192.168.1.255<br>可用地址：1.1-1.254<br>向主机位借位?<br><strong>案例一：</strong><br>如果借2（n）位，那么划分几个网？2^1(2^n)个网络<br>划分成了那几个网络？<br>192.168.1.0/25<br>子网掩码？<br>255.255.255.128<br>块大小（每个小网络的地址总数）:256-128=128</p>
+<p>分成了那些网络？<br>192.168.1.0/25<br> 网络号：192.168.1.0/25<br> 广播地址（网络中最后一个地址）:    192.168.1.127/25</p>
+<p>192.168.1.128/25<br> 网络号：192.168.1.128/25<br> 广播地址（网络中最后一个地址）:    192.168.1.255/25</p>
+<p><strong>/30 255.255.255.252</strong><br><strong>/29 255.255.255.248</strong><br><strong>/28 255.255.255.240</strong><br><strong>/27 255.255.255.224</strong><br><strong>/26 255.255.255.192</strong><br><strong>/25 255.255.255.128</strong></p>
+<p><strong>案例二</strong><br>B类网络子网划分<br> 181.1.1.1 默认子网掩码值 255.255.0.0/16</p>
+<hr>
+<p>1.假设借2位，那么子网掩码值：255.255.192.0/18<br>2.划分了2^2=4个网络<br>3.快大小：256-192=64<br>4.有哪些网络？<br>181.1.0.0<br> 网络号：181.1.0.0/18<br> 广播号：181.1.63.255<br> 可用地址：181.1.0.1-181.1.63.254</p>
+<hr>
+<p>181.1.64.0<br> 步骤如上<br>181.1.128.0<br> 步骤如上<br>181.1.192.0<br> 步骤如上</p>
+<p>####如何创建子网？<br>   要创建子网，我们可以采用如下步骤：<br>     （1）确定需要的网络ID数<br>           ■ 每个LAN子网一个<br>           ■ 每条广域网连接一个<br>     （2）确定每个子网所需的主机ID数<br>           ■每个TCP/IP主机一个<br>           ■每个路由器接口一个<br>    （3）根据上述需要，确定如下内容：<br>           ■一个用于整个网络的子网掩码<br>           ■每个物理网段的唯一子网ID<br>           ■每个子网的主机ID范围</p>
+<h2 id="地址汇总"><a href="#地址汇总" class="headerlink" title="地址汇总"></a>地址汇总</h2><p>1.变化的字节<br>2.块大小<br>3.掩码值 256-块大小</p>
+<p><img src="https://wx1.sinaimg.cn/small/006ZIQqwgy1g9kxx4jel2j30j8085glx.jpg" alt></p>
+<p>变化的字节在哪里？第三字节<br>块大小？  4<br>掩码值：256-块大小<br>172.16.4.0/22<br>可用地址：172.16.4.1—172.16.7.254  </p>
+<h2 id="CIDR值表："><a href="#CIDR值表：" class="headerlink" title="CIDR值表："></a>CIDR值表：</h2><p>255.0.0.0                /8<br>255.128.0.0              /9<br>255.192.0.0              /10<br>255.224.0.0              /11<br>255.240.0.0              /12<br>255.248.0.0              /13<br>255.252.0.0              /14<br>255.254.0.0              /15<br>255.255.0.0              /16<br>255.255.128.0            /17<br>255.255.192.0            /18<br>255.255.224.0            /19<br>255.255.240.0           /20<br>255.255.248.0           /21<br>255.255.252.0           /22<br>255.255.254.0           /23<br>255.255.255.0           /24<br>255.255.255.128         /25<br>255.255.255.192         /26<br>255.255.255.224         /27<br>255.255.255.240         /28<br>255.255.255.248         /29<br>255.255.255.252         /30</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/12/04/IPV4编制/" data-id="ck3vda5l80000fcxc1ciwy15w"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/12/06/生成树协议/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            生成树协议
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/12/03/配置博客/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">配置博客</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>

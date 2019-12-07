@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    网关备份 |
+    
+    你好</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-备份网关" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      网关备份
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/12/03/备份网关/" class="article-date">
+  <time datetime="2019-12-03T03:51:44.000Z" itemprop="datePublished">2019-12-03</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <p>##介绍</p>
+<a id="more"></a>
+<p>热备份路由协议（网关冗余）：HSRP(思科私有) VRRP<br>1.虚拟接口<br>2.优先级(端口)<br>3.跟踪(发送文件)<br>4.抢占<br>5.hello时间  </p>
+<h2 id="如何配置"><a href="#如何配置" class="headerlink" title="如何配置"></a>如何配置</h2><h3 id="配置vlan10的网关冗余，MSW1作活动网关，MSW2作备份网关"><a href="#配置vlan10的网关冗余，MSW1作活动网关，MSW2作备份网关" class="headerlink" title="配置vlan10的网关冗余，MSW1作活动网关，MSW2作备份网关"></a>配置vlan10的网关冗余，MSW1作活动网关，MSW2作备份网关</h3><p>MSW1(config)#interface vlan 10<br>MSW1(config-if)#standby 10 ip 192.168.10.250  开启虚拟接口并配置IP地址<br>MSW1(config-if)#standby 10 priority 120       设置优先级<br>MSW1(config-if)#standby 10 preempt          设置抢占模式<br>MSW1(config-if)#standby 10 track f0/23        设置跟踪端口<br>MSW1(config-if)#standby 10 track f0/24<br>MSW1(config-if)#standby 10 timers 3 10        设置hello时间</p>
+<p>MSW2(config)#int vlan 10<br>MSW2(config-if)#standby 10 ip 192.168.10.250<br>MSW2(config-if)#standby 10 priority 90<br>MSW2(config-if)#standby 10 preempt<br>MSW2(config-if)#standby 10 track f0/21<br>MSW2(config-if)#standby 10 track f0/22<br>MSW2(config-if)#standby 10 timers 3 10</p>
+<h3 id="配置vlan20的网关冗余，MSW2作活动网关，MSW1作备份网关"><a href="#配置vlan20的网关冗余，MSW2作活动网关，MSW1作备份网关" class="headerlink" title="配置vlan20的网关冗余，MSW2作活动网关，MSW1作备份网关"></a>配置vlan20的网关冗余，MSW2作活动网关，MSW1作备份网关</h3><p>MSW2(config)#int vlan 20<br>MSW2(config-if)#standby 20 ip 192.168.20.250<br>MSW2(config-if)#standby 20 priority 120<br>MSW2(config-if)#standby 20 preempt<br>MSW2(config-if)#standby 20 track f0/21<br>MSW2(config-if)#standby 20 track f0/22<br>MSW2(config-if)#standby 20 timers 3 10</p>
+<p>MSW1(config)#int vlan 20<br>MSW1(config-if)#standby 20 ip 192.168.20.250<br>MSW1(config-if)#standby 20 priority 90<br>MSW1(config-if)#standby 20 preempt<br>MSW1(config-if)#standby 20 track f0/23<br>MSW1(config-if)#standby 20 track f0/24<br>MSW1(config-if)#standby 20 timers 3 10</p>
+<h3 id="如何检查？"><a href="#如何检查？" class="headerlink" title="如何检查？"></a>如何检查？</h3><p>MSW1#sh standby</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/12/03/备份网关/" data-id="ck3vda5lf0001fcxcqkvietcw"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统安全/">系统安全</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/12/03/配置博客/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            配置博客
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/12/03/网络安全/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">计算机的发展</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>
