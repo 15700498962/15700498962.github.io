@@ -1,0 +1,170 @@
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>sql注入 | 王旭洁</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content>
+    <meta name="author" content>
+    <link rel="icon" href="/favicon/favicon.ico">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/tagplugins.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    
+
+
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="王旭洁" type="application/atom+xml">
+    
+</head>
+
+<body>
+  <div class="blog-header">
+   <a id="menu-nav-icon"><img src="/image/menu.png"/></a>
+   <div class="nav-container">
+     <nav id="main-nav">
+       
+         <a class="main-nav-link" href="/">Home</a>
+       
+         <a class="main-nav-link" href="/archives">Archives</a>
+       
+     </nav>
+   </div>
+   <!--
+   <div id="search-form-wrap">
+     <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+   </div>
+ -->
+    <h1 class="blog-title">王旭洁</h1>
+    <p class="lead blog-description"></p>
+</div>
+
+  <div id='main-part'>
+      <div class="main">
+<div class="blog-post">
+    <!-- Title -->
+    <h1 class="blog-post-title">
+        <a href="/2020/02/02/sql注入/">
+            Sql注入
+        </a>
+    </h1>
+    <!-- Date and Author -->
+    <p class="blog-post-meta">
+        2020-02-02
+        
+    </p>
+
+    
+
+    <!-- Content -->
+    <h1 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h1><a id="more"></a>
+
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL是操作数据库数据的结构化查询语言，网页的应用数据和后台数据库中的数据进行交互时会采用SQL。而SQL注入是将Web页面的原URL、表单域或数据包输入的参数，修改拼接成SQL语句，传递给Web服务器，进而传给数据库服务器以执行数据库命令。如Web应用程序的开发人员对用户所输入的数据或cookie等内容不进行过滤或验证(即存在注入点)就直接传输给数据库，就可能导致拼接的SQL被执行，获取对数据库的信息以及提权，发生SQL注入攻击。</span><br></pre></td></tr></table></figure>
+
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	1、广泛性</span><br><span class="line">任何一个基于SQL语言的数据库都可能被攻击，很多开发人员在编写Web应用程序时未对从输入参数、Web表单、cookie等接受到的值进行规范性验证和检测，通常会出现SQL注入漏洞。 </span><br><span class="line">    2、隐蔽性</span><br><span class="line">SQL注入语句一般都嵌入在普通的HTTP请求中，很难与正常语句区分开，所以当前许多防火墙都无法识别予以警告，而且SQL注入变种极多，攻击者可以调整攻击的参数，所以使用传统的方法防御SQL注入效果非常不理想。  </span><br><span class="line">    3、危害大</span><br><span class="line">攻击者通过SQL注入获取到服务器的库名、表名、字段名，从而获取到整个服务器中的数据，对网站用户的数据安全有极大的威胁。攻击者也可以通过获取到的数据，得到后台管理员的密码，然后对网页页面进行恶意篡改。这样不仅对数据库信息安全造成严重威胁，对整个数据库系统安全也影响重大。</span><br><span class="line">    4、操作方便</span><br><span class="line">互联网上有很多SQL注入工具，简单易学，攻击过程简单，不需要专业知识也能自如运用。</span><br></pre></td></tr></table></figure>
+
+<h3 id="注入过程"><a href="#注入过程" class="headerlink" title="注入过程"></a>注入过程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一步：SQL注入点探测。探测SQL注入点是关键的一步，通过适当的分析应用程序，可以判断什么地方存在SQL注入点。通常只要带有输入提交的动态网页，并且动态网页访问数据库，就可能存在SQL注入漏洞。如果程序员信息安全意识不强，采用动态构造SQL语句访问数据库，并且对用户的输入未进行有效性验证，则存在SQL注入漏洞的可能性很大。一般通过页面的报错信息来确定是否存在SQL注入漏洞。</span><br><span class="line">第二步：收集后台数据库信息。不同数据库的注入方法、函数都不尽相同，因此在注入之前，我们先要判断一下数据库的类型。判断数据库类型的方法很多，可以输入特殊字符，如单引号，让程序返回错误信息，我们根据错误信息提示进行判断；还可以使用特定函数来判断，比如输入“1 and version（）&gt;0”，程序返回正常，说明version（）函数被数据库识别并执行，而version（）函数是MySQL特有的函数，因此可以推断后台数据库为MySQL。 </span><br><span class="line">第三步：猜解用户名和密码。数据库中的表和字段命名一般都是有规律的。通过构造特殊SQL语句在数据库中依次猜解出表名、字段名、字段数、用户名和密码。（https://www.cnblogs.com/guoguochong/p/11634564.html）</span><br><span class="line">第四步：查找Web后台管理入口。WEB后台管理通常不对普通用户开放，要找到后台管理的登录网址，可以利用Web目录扫描工具（如：wwwscan、AWVS）快速搜索到可能的登录地址，然后逐一尝试，便可以找到后台管理平台的登录网址。 </span><br><span class="line">第五步：入侵和破坏。一般后台管理具有较高权限和较多的功能，使用前面已破译的用户名、密码成功登录后台管理平台后，就可以任意进行破坏，比如上传木马、篡改网页、修改和窃取信息等，还可以进一步提权，入侵Web服务器和数据库服务器。</span><br></pre></td></tr></table></figure>
+
+<h3 id="注入方法"><a href="#注入方法" class="headerlink" title="注入方法"></a>注入方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">由于编写程序时未对用户输入数据的合理性进行判断，导致攻击者能在SQL Injection的注入点中夹杂代码进行执行，并通过页面返回的提示，获取进行下一步攻击所需的信息。根据输入的参数，可将SQL注入方式大致分为两类：数字型注入、字符型注入。</span><br><span class="line">1、数字型注入</span><br><span class="line">当输入的参数为整型时，如ID、年龄、页码等，如果存在注入漏洞，则可以认为是数字型注入。这种数字型注入最多出现在ASP、PHP等弱类型语言中，弱类型语言会自动推导变量类型，例如，参数id=8，PHP会自动推导变量id的数据类型为int类型，那么id=8 and 1=1，则会推导为string类型，这是弱类型语言的特性。而对于Java、C#这类强类型语言，如果试图把一个字符串转换为int类型，则会抛出异常，无法继续执行。所以，强类型的语言很少存在数字型注入漏洞。</span><br><span class="line">2、字符型注入</span><br><span class="line">当输入参数为字符串时，称为字符型。数字型与字符型注入最大的区别在于：数字型不需要单引号闭合，而字符串类型一般要使用单引号来闭合。</span><br></pre></td></tr></table></figure>
+
+<h3 id="攻击特点"><a href="#攻击特点" class="headerlink" title="攻击特点"></a>攻击特点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SQL注人攻击是目前web应用网络攻击中最常见的手段之一，安全风险较高，在一定程度上超过缓冲区溢出漏洞，而市场上的防火墙又不能对SQL注入漏洞进行有效的检测和防范。防火墙为了使正常网络应用程序访问服务器端的数据，必须允许从互联网到Web服务器的正向连接，因此一旦web网络应用程序存在注入漏洞，攻击者就可以获取访问数据库的权利进而获得数据库所在服务器的访问权在某些情况下，SQL注入攻击的风险要高于缓冲区溢出漏洞等所有其他漏洞。SQL注入攻击普遍存在范围广、实现容易、破坏性大等特点。 </span><br><span class="line">SQL注入攻击者在H1TIP请求中输入含有恶意构造的SQL语法且是合法的，只要应用程序中没有做严格的处理那么就会出现SQL注入漏洞危险，目前以PHP、Perl、Cold Fusion Management等技术与Oracle、SQLServer、Sybase、DB2等数据管理系统相结合的Web应用程序都发现有SQL注入漏洞。 </span><br><span class="line">SQL注入技术公布后不久，互联网上出现了很多例如教主的HDSI、NBSI、明小子的Domain等SQL注人工具，对那些存在SQL注入的网站以及Web应用程序进行攻击，很容易就可以获取其服务器的控制权。</span><br><span class="line">Sql注入的工具：http://www.360doc.com/content/18/0802/10/11935121_775103416.shtml</span><br></pre></td></tr></table></figure>
+
+<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">https://blog.csdn.net/carol980206/article/details/87905304</span><br><span class="line">    1、基于布尔的盲注</span><br><span class="line">因为web的页面返回值都是True或者False，所以布尔盲注就是注入后根据页面返回值来得到数据库信息的一种办法。 </span><br><span class="line">    2、基于时间的盲注</span><br><span class="line">当布尔型注入没有结果（页面显示正常）的时候，我们很难判断注入的代码是否被执行，也可以说到底这个注入点存不存在？这个时候布尔型注入就无法发挥自己的作用了。基于时间的盲注便应运而生，所谓基于时间的盲注，就是我们根据web页面相应的时间差来判断该页面是否存在SQL注入点。</span><br><span class="line">    3、联合查询注入</span><br><span class="line">使用联合查询进行注入的前提是我们要进行注入的页面必须有显示位。所谓联合查询注入即是使用union合并两个或多个SELECT语句的结果集，所以两个及以上的select必须有相同列、且各列的数据类型也都相同。联合查询注入可在链接最后添加order by 9基于随意数字的注入，根据页面的返回结果来判断站点中的字段数目。</span><br><span class="line">    4、基于错误信息的注入</span><br><span class="line">此方法是在页面没有显示位，但是echo mysql_error();函数输出了错误信息的时候方能使用。优点是注入速度快，缺点是语句较为复杂，而且只能用limit依次进行猜解。总体来说，报错注入其实是一种公式化的注入方法，主要用于在页面中没有显示位，但是用echo mysql_error();输出了错误g信息时使用。</span><br></pre></td></tr></table></figure>
+
+<h3 id="检测技术"><a href="#检测技术" class="headerlink" title="检测技术"></a>检测技术</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    SQL注入的检测方式目前主要有两大类，第一：动态监测，即在系统运行时，通常在系统验收阶段或上线运行阶段使用该方法，使用动态监测攻击对其系统进行扫描，然后依据扫描结果判断是否存在SQL注入漏洞。第二：静态检测，又称静态代码扫描，对代码做深层次分析。</span><br><span class="line">1、动态检测</span><br><span class="line">    动态监测分为两类：手工监测以及工具监测。相对于手动监测的高成本以及高漏检率，在实际生产过程中更偏向于工具监测，但工具监测同样存在较大的局限性。其原因在于工具是用报文来判断SQL注入是否生效，然而仅仅通过报文是很难精准地判断SQL注入是否存在，因此存在较高的误报率。 </span><br><span class="line">2、静态检测</span><br><span class="line">    静态检测的误报率相对较低，其主要原因在于SQL注入漏洞的代码特征较为明显。 </span><br><span class="line">（1）使用数据库交互代码； </span><br><span class="line">（2）使用字符串拼接方式构造动态SQL语句；</span><br><span class="line">（3）使用未过滤的不可信任数据。</span><br><span class="line">    在常规的排查应用系统中是否存在SQL注入漏洞时，由于静态扫描的代码特征明显，误报率低和直接阅读相关代码，工作总量减少的优势，通常使用静态扫描。</span><br></pre></td></tr></table></figure>
+
+
+
+    <!-- Social share choices -->
+    
+  <div id="social-share">
+    <a data-url="http://yoursite.com/2020/02/02/sql注入/" href="https://plus.google.com/share?url=" class="googleplus"><img src="/image/googleplusicon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2020/02/02/sql注入/" href="https://twitter.com/intent/tweet?url=" class="twitter"><img src="/image/twittericon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2020/02/02/sql注入/" href="http://pinterest.com/pin/create/button/?url=" class="pinterest"><img src="/image/pinteresticon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2020/02/02/sql注入/" href="https://www.facebook.com/sharer/sharer.php?u=" class="facebook"><img src="/image/facebookicon.png" alt=""/></a>
+  </div>
+
+
+
+
+
+<!--
+
+
+https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/02/02/sql注入/
+http://yoursite.com/2020/02/02/sql%E6%B3%A8%E5%85%A5/
+-->
+
+
+
+    <hr />
+
+
+    <!-- Tags and Categories links -->
+    
+
+    
+
+
+<div class="blog-tags-container">
+    <span><img src="/image/tagsicon.png" alt=""/></span>
+    <a href="/tags/数据安全/">#数据安全</a>
+</div>
+
+
+
+    <!-- Comment using disqus -->
+    
+
+</div>
+</div>
+
+
+  </div>
+  <!-- Footer -->
+  <div id="footer">
+  <div id="footer-social">
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p id="footer-info">
+    &copy; 2020 John Doe<br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> -
+    Theme <a href="https://github.com/Suolawangzai/hexo-theme-nebula" target="_blank">nebula</a>
+  </p>
+
+  <div id="busuanzi">
+    <span id="busuanzi_container_site_pv">
+      &hearts;
+    Total visits: <span id="busuanzi_value_site_pv"></span>
+    </span>
+  </div>
+  <!--
+  <div id="footer-info">
+    &copy; 2020 John Doe<br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  </div>
+-->
+</div>
+
+  <!-- After footer scripts -->
+  <!-- Disqus Comments -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="/js/main.js"></script>
+
+</body>
+
+</html>
