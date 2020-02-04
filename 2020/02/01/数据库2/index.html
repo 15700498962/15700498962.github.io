@@ -1,0 +1,207 @@
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>数据库基本操作 | 王旭洁</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content>
+    <meta name="author" content>
+    <link rel="icon" href="/favicon/favicon.ico">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/tagplugins.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    
+
+
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="王旭洁" type="application/atom+xml">
+    
+</head>
+
+<body>
+  <div class="blog-header">
+   <a id="menu-nav-icon"><img src="/image/menu.png"/></a>
+   <div class="nav-container">
+     <nav id="main-nav">
+       
+         <a class="main-nav-link" href="/">Home</a>
+       
+         <a class="main-nav-link" href="/archives">Archives</a>
+       
+     </nav>
+   </div>
+   <!--
+   <div id="search-form-wrap">
+     <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+   </div>
+ -->
+    <h1 class="blog-title">王旭洁</h1>
+    <p class="lead blog-description"></p>
+</div>
+
+  <div id='main-part'>
+      <div class="main">
+<div class="blog-post">
+    <!-- Title -->
+    <h1 class="blog-post-title">
+        <a href="/2020/02/01/数据库2/">
+            数据库基本操作
+        </a>
+    </h1>
+    <!-- Date and Author -->
+    <p class="blog-post-meta">
+        2020-02-01
+        
+    </p>
+
+    
+
+    <!-- Content -->
+    <h1 id="数据库2"><a href="#数据库2" class="headerlink" title="数据库2"></a>数据库2</h1><a id="more"></a>
+<h5 id="忘记密码怎么办？"><a href="#忘记密码怎么办？" class="headerlink" title="忘记密码怎么办？"></a>忘记密码怎么办？</h5><ol>
+<li>打开mysql.exe和mysqld.exe所在的文件夹,复制路径地址</li>
+<li>打开cmd命令提示符，进入上一步mysql.exe所在的文件夹。 </li>
+<li>mysqld –skip-grant-tables </li>
+<li>新打开一个cmd, 直接输入mysql </li>
+<li>use mysql ；</li>
+<li>select user,host,password from user ；</li>
+<li>update user set password=password(‘123456’) where user=’root’ and host=’localhost’; </li>
+</ol>
+<p>decimal（4，1）//代表有四位，小数点以后一位</p>
+<p>unsigned 非负数</p>
+<p>primary key(字段1，字段2)//将字段 1和字段2组合在一起成为表的主键</p>
+<p>foreign key：外键</p>
+<p>not null:非空</p>
+<p>nuique:唯一主键，不可重复</p>
+<p>auto_increment:自动递增</p>
+<ol>
+<li>连续的时候会递增</li>
+<li>删除所有的数据后在插入的数据会按照删除的最大数值递增</li>
+<li>删除后可以手动添加没有的数值，不手动添加的依旧会按照最大的数值自增</li>
+</ol>
+<p>constraint 名称 foreign key() references 表名()</p>
+<ol>
+<li>先删除从表，再删除主表</li>
+<li>构建外键引用时设置级联操作</li>
+<li>将外键临时取消作用，或删除外键引用</li>
+</ol>
+<p>删除约束（实质上就是修改表结构）</p>
+<p>修改数据库对象：alter</p>
+<p>删除表的外键的语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名</span><br><span class="line">  drop FOREIGN KEY 名字;</span><br><span class="line">如果该主键对应字段为自增字段，则不能删除</span><br><span class="line"></span><br><span class="line">删除已有字段，将已有字段删除</span><br><span class="line">alter table a</span><br></pre></td></tr></table></figure>
+
+<p>对已存在的表进行结构修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">为表A添加用户密码字段</span><br><span class="line">alter table a</span><br><span class="line">  add userpassword varchar(20) not null;</span><br><span class="line">更改已有数据的属性</span><br><span class="line">将密码字段的长度改为30</span><br><span class="line">alter table a</span><br><span class="line">  modify userpassword varchar(30);</span><br></pre></td></tr></table></figure>
+
+<p>delete from 表名 [where 条件表达式]</p>
+<p>show create tables 表名：用来查看表的代码</p>
+<p>另类的insert</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.插入多条数据值</span><br><span class="line">insert into 表名(字段) values(值列表)</span><br><span class="line">2.insert...select...(须先创建目标表)</span><br><span class="line">insert into 表名[(字段列表)] select 字段列表 from 表名</span><br><span class="line">3.create...select...</span><br><span class="line">create table 表名 select 字段列表 from 表名;</span><br></pre></td></tr></table></figure>
+
+<p>删除表中数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名；</span><br><span class="line">truncate table 表名；//不能写where，属于DDL,不能恢复</span><br><span class="line">drop table 表名;不仅删除数据，存储数据的对象都没了</span><br><span class="line">delete from 表名 where 字段 in ( , , );</span><br><span class="line">delete from 表名 where 字段 = ? or 字段 = ?;</span><br><span class="line">delete from 表名 where year(时间) from</span><br></pre></td></tr></table></figure>
+
+<p>truncate与delete的异同？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>比较运算符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;</span><br><span class="line">&gt;</span><br><span class="line">=</span><br><span class="line">!=   &lt;&gt;</span><br><span class="line">&lt;=</span><br><span class="line">&gt;=</span><br><span class="line">between..and ..  包含边界值</span><br><span class="line">and </span><br><span class="line">or</span><br><span class="line">!</span><br><span class="line">in</span><br><span class="line">not in</span><br><span class="line">like</span><br><span class="line">not like</span><br><span class="line">is null </span><br><span class="line">is not null</span><br></pre></td></tr></table></figure>
+
+<p>截取字符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select left(str,len)=?;</span><br><span class="line">select left(str,len)=?;</span><br><span class="line">select substring(str,start-position,个数);</span><br></pre></td></tr></table></figure>
+
+
+
+    <!-- Social share choices -->
+    
+  <div id="social-share">
+    <a data-url="http://yoursite.com/2020/02/01/数据库2/" href="https://plus.google.com/share?url=" class="googleplus"><img src="/image/googleplusicon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2020/02/01/数据库2/" href="https://twitter.com/intent/tweet?url=" class="twitter"><img src="/image/twittericon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2020/02/01/数据库2/" href="http://pinterest.com/pin/create/button/?url=" class="pinterest"><img src="/image/pinteresticon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2020/02/01/数据库2/" href="https://www.facebook.com/sharer/sharer.php?u=" class="facebook"><img src="/image/facebookicon.png" alt=""/></a>
+  </div>
+
+
+
+
+
+<!--
+
+
+https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/02/01/数据库2/
+http://yoursite.com/2020/02/01/%E6%95%B0%E6%8D%AE%E5%BA%932/
+-->
+
+
+
+    <hr />
+
+
+    <!-- Tags and Categories links -->
+    
+
+    
+
+
+<div class="blog-tags-container">
+    <span><img src="/image/tagsicon.png" alt=""/></span>
+    <a href="/tags/操作系统系统安全/">#操作系统系统安全</a>
+</div>
+
+
+
+    <!-- Comment using disqus -->
+    
+
+</div>
+</div>
+
+
+  </div>
+  <!-- Footer -->
+  <div id="footer">
+  <div id="footer-social">
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p id="footer-info">
+    &copy; 2020 John Doe<br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> -
+    Theme <a href="https://github.com/Suolawangzai/hexo-theme-nebula" target="_blank">nebula</a>
+  </p>
+
+  <div id="busuanzi">
+    <span id="busuanzi_container_site_pv">
+      &hearts;
+    Total visits: <span id="busuanzi_value_site_pv"></span>
+    </span>
+  </div>
+  <!--
+  <div id="footer-info">
+    &copy; 2020 John Doe<br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  </div>
+-->
+</div>
+
+  <!-- After footer scripts -->
+  <!-- Disqus Comments -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="/js/main.js"></script>
+
+</body>
+
+</html>

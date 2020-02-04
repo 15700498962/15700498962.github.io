@@ -1,0 +1,187 @@
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>初步认识渗透测试 | 王旭洁</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content>
+    <meta name="author" content>
+    <link rel="icon" href="/favicon/favicon.ico">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/tagplugins.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    
+
+
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="王旭洁" type="application/atom+xml">
+    
+</head>
+
+<body>
+  <div class="blog-header">
+   <a id="menu-nav-icon"><img src="/image/menu.png"/></a>
+   <div class="nav-container">
+     <nav id="main-nav">
+       
+         <a class="main-nav-link" href="/">Home</a>
+       
+         <a class="main-nav-link" href="/archives">Archives</a>
+       
+     </nav>
+   </div>
+   <!--
+   <div id="search-form-wrap">
+     <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+   </div>
+ -->
+    <h1 class="blog-title">王旭洁</h1>
+    <p class="lead blog-description"></p>
+</div>
+
+  <div id='main-part'>
+      <div class="main">
+<div class="blog-post">
+    <!-- Title -->
+    <h1 class="blog-post-title">
+        <a href="/2020/02/01/初步认识渗透测试/">
+            初步认识渗透测试
+        </a>
+    </h1>
+    <!-- Date and Author -->
+    <p class="blog-post-meta">
+        2020-02-01
+        
+    </p>
+
+    
+
+    <!-- Content -->
+    <h1 id="磁盘的分区与挂载"><a href="#磁盘的分区与挂载" class="headerlink" title="磁盘的分区与挂载"></a>磁盘的分区与挂载</h1><h1 id="渗透测试"><a href="#渗透测试" class="headerlink" title="渗透测试"></a>渗透测试</h1><a id="more"></a>
+
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">渗透测试是指渗透人员早不同的位置利用各种手段对某个特定网络进行测试，以期发现和挖掘系统中存在的漏洞，然后输出渗透测试报告，并提交给网络所有者。网络所有者根据渗透人员提供的渗透测试报告，可以清晰知晓系统中存在的安全隐患和问题。</span><br></pre></td></tr></table></figure>
+
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><h5 id="方法分类"><a href="#方法分类" class="headerlink" title="方法分类"></a>方法分类</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、黑箱测试</span><br><span class="line">    黑箱测试又被称为所谓的“Zero-Knowledge Testing”，渗透者完全处于对系统一无所知的状态，通常这类型测试，最初的信息获取来自于DNS、Web、Email及各种公开对外的服务器。</span><br><span class="line">2、白盒测试</span><br><span class="line">    白盒测试与黑箱测试恰恰相反，测试者可以通过正常渠道向被测单位取得各种资料，包括网络拓扑、员工资料甚至网站或其它程序的代码片断，也能够与单位的其它员工（销售、程序员、管理者……）进行面对面的沟通。这类测试的目的是模拟企业内部雇员的越权操作。</span><br><span class="line">3、隐秘测试</span><br><span class="line">    隐秘测试是对被测单位而言的，通常情况下，接受渗透测试的单位网络管理部门会收到通知：在某些时段进行测试。因此能够监测网络中出现的变化。但隐秘测试则被测单位也仅有极少数人知晓测试的存在，因此能够有效地检验单位中的信息安全事件监控、响应、恢复做得是否到位。</span><br></pre></td></tr></table></figure>
+
+<h5 id="目标分类"><a href="#目标分类" class="headerlink" title="目标分类"></a>目标分类</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、主机操作系统渗透</span><br><span class="line">    对Windows、Solaris、AIX、Linux、SCO、SGI等操作系统本身进行渗透测试。</span><br><span class="line">2、数据库系统渗透</span><br><span class="line">    对MS-SQL、Oracle、MySQL、Informix、Sybase、DB2、Access等数据库应用系统进行渗透测试。</span><br><span class="line">3、应用系统渗透</span><br><span class="line">    对渗透目标提供的各种应用，如ASP、CGI、JSP、PHP等组成的WWW应用进行渗透测试。</span><br><span class="line">4、网络设备渗透</span><br><span class="line">    对各种防火墙、入侵检测系统、网络设备进行渗透测试。</span><br></pre></td></tr></table></figure>
+
+<h4 id="渗透测试的流程"><a href="#渗透测试的流程" class="headerlink" title="渗透测试的流程"></a>渗透测试的流程</h4><h5 id="总流程："><a href="#总流程：" class="headerlink" title="总流程："></a>总流程：</h5><p>明确目标-信息收集-漏洞探测-漏洞验证-信息分析-获取所需-信息整理-形成报告</p>
+<p>2.1 明确目标</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">确定范围：测试目标的范围，ip，域名，内外网。</span><br><span class="line">确定规则：能渗透到什么程度，时间？能否修改上传？能否提权等。</span><br><span class="line">确定需求：web应用的漏洞(新上线程序)？业务逻辑漏洞（针对业务的）？人员权限管理漏洞（针对人员、权限）？等等。（立体全方位）</span><br><span class="line">根据需求和自己技术能力来确定能不能做，能做多少。</span><br></pre></td></tr></table></figure>
+
+<p>2.2 信息收集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">方式：主动扫描，开放搜索等</span><br><span class="line"></span><br><span class="line">开放搜索：利用搜索引擎获得，后台，未授权页面，敏感url等。</span><br><span class="line"></span><br><span class="line">基础信息：IP，网段，域名，端口</span><br><span class="line">系统信息：操作系统版本</span><br><span class="line">应用信息：各端口的应用，例如web应用，邮件应用等等</span><br><span class="line">版本信息：所有这些探测到的东西的版本。</span><br><span class="line">服务信息</span><br><span class="line">人员信息：域名注册人员信息，web应用中网站发帖人的id，管理员姓名等。</span><br><span class="line">防护信息：试着看能否探测到防护设备</span><br></pre></td></tr></table></figure>
+
+<p>2.3 漏洞探索</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">利用上一步中列出的各种系统，应用等使用相应的漏洞。</span><br><span class="line"></span><br><span class="line">方法：</span><br><span class="line"></span><br><span class="line">1.漏扫，awvs，IBM appscan等。</span><br><span class="line">2.结合漏洞去exploit-db等位置找利用。</span><br><span class="line">3.在网上寻找验证poc。</span><br><span class="line">内容：</span><br><span class="line"></span><br><span class="line">系统漏洞：系统没有及时打补丁</span><br><span class="line">Websever漏洞：Websever配置问题</span><br><span class="line">Web应用漏洞：Web应用开发问题</span><br><span class="line">其它端口服务漏洞：各种21/8080(st2)/7001/22/3389</span><br><span class="line">通信安全：明文传输，token在cookie中传送等。</span><br></pre></td></tr></table></figure>
+
+<p>2.4 漏洞验证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">将上一步中发现的有可能可以成功利用的全部漏洞都验证一遍。结合实际情况，搭建模拟环境进行试验。成功后再应用于目标中。</span><br><span class="line"></span><br><span class="line">自动化验证：结合自动化扫描工具提供的结果</span><br><span class="line">手工验证，根据公开资源进行验证</span><br><span class="line">试验验证：自己搭建模拟环境进行验证</span><br><span class="line">登陆猜解：有时可以尝试猜解一下登陆口的账号密码等信息</span><br><span class="line">业务漏洞验证：如发现业务漏洞，要进行验证</span><br><span class="line">公开资源的利用</span><br><span class="line">-exploit-db/wooyun/</span><br><span class="line"></span><br><span class="line">-google hacking</span><br><span class="line"></span><br><span class="line">-渗透代码网站</span><br><span class="line"></span><br><span class="line">-通用、缺省口令</span><br><span class="line"></span><br><span class="line">-厂商的漏洞警告等等。</span><br></pre></td></tr></table></figure>
+
+<p>2.5 信息分析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">为下一步实施渗透做准备。</span><br><span class="line"></span><br><span class="line">精准打击：准备好上一步探测到的漏洞的exp，用来精准打击</span><br><span class="line">绕过防御机制：是否有防火墙等设备，如何绕过</span><br><span class="line">定制攻击路径：最佳工具路径，根据薄弱入口，高内网权限位置，最终目标</span><br><span class="line">绕过检测机制：是否有检测机制，流量监控，杀毒软件，恶意代码检测等（免杀）</span><br><span class="line">攻击代码：经过试验得来的代码，包括不限于xss代码，sql注入语句等</span><br></pre></td></tr></table></figure>
+
+<p>2.6 获取所需</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实施攻击：根据前几步的结果，进行攻击</span><br><span class="line">获取内部信息：基础设施（网络连接，vpn，路由，拓扑等）</span><br><span class="line">进一步渗透：内网入侵，敏感目标</span><br><span class="line">持续性存在：一般我们对客户做渗透不需要。rookit，后门，添加管理账号，驻扎手法等</span><br><span class="line">清理痕迹：清理相关日志（访问，操作），上传文件等</span><br></pre></td></tr></table></figure>
+
+<p>2.7 信息整理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">整理渗透工具：整理渗透过程中用到的代码，poc，exp等</span><br><span class="line">整理收集信息：整理渗透过程中收集到的一切信息</span><br><span class="line">整理漏洞信息：整理渗透过程中遇到的各种漏洞，各种脆弱位置信息</span><br><span class="line">目的：为了最后形成报告，形成测试结果使用。</span><br></pre></td></tr></table></figure>
+
+<p>2.8 形成报告</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">按需整理：按照之前第一步跟客户确定好的范围，需求来整理资料，并将资料形成报告</span><br><span class="line">补充介绍：要对漏洞成因，验证过程和带来危害进行分析</span><br><span class="line">修补建议：当然要对所有产生的问题提出合理高效安全的解决办法</span><br></pre></td></tr></table></figure>
+
+
+
+    <!-- Social share choices -->
+    
+  <div id="social-share">
+    <a data-url="http://yoursite.com/2020/02/01/初步认识渗透测试/" href="https://plus.google.com/share?url=" class="googleplus"><img src="/image/googleplusicon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2020/02/01/初步认识渗透测试/" href="https://twitter.com/intent/tweet?url=" class="twitter"><img src="/image/twittericon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2020/02/01/初步认识渗透测试/" href="http://pinterest.com/pin/create/button/?url=" class="pinterest"><img src="/image/pinteresticon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2020/02/01/初步认识渗透测试/" href="https://www.facebook.com/sharer/sharer.php?u=" class="facebook"><img src="/image/facebookicon.png" alt=""/></a>
+  </div>
+
+
+
+
+
+<!--
+
+
+https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/02/01/初步认识渗透测试/
+http://yoursite.com/2020/02/01/%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/
+-->
+
+
+
+    <hr />
+
+
+    <!-- Tags and Categories links -->
+    
+
+    
+
+
+<div class="blog-tags-container">
+    <span><img src="/image/tagsicon.png" alt=""/></span>
+    <a href="/tags/操作系统系统安全/">#操作系统系统安全</a>
+</div>
+
+
+
+    <!-- Comment using disqus -->
+    
+
+</div>
+</div>
+
+
+  </div>
+  <!-- Footer -->
+  <div id="footer">
+  <div id="footer-social">
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p id="footer-info">
+    &copy; 2020 John Doe<br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> -
+    Theme <a href="https://github.com/Suolawangzai/hexo-theme-nebula" target="_blank">nebula</a>
+  </p>
+
+  <div id="busuanzi">
+    <span id="busuanzi_container_site_pv">
+      &hearts;
+    Total visits: <span id="busuanzi_value_site_pv"></span>
+    </span>
+  </div>
+  <!--
+  <div id="footer-info">
+    &copy; 2020 John Doe<br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  </div>
+-->
+</div>
+
+  <!-- After footer scripts -->
+  <!-- Disqus Comments -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="/js/main.js"></script>
+
+</body>
+
+</html>

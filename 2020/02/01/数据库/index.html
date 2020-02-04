@@ -1,0 +1,289 @@
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>数据库基本常识 | 王旭洁</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content>
+    <meta name="author" content>
+    <link rel="icon" href="/favicon/favicon.ico">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/tagplugins.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    
+
+
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="王旭洁" type="application/atom+xml">
+    
+</head>
+
+<body>
+  <div class="blog-header">
+   <a id="menu-nav-icon"><img src="/image/menu.png"/></a>
+   <div class="nav-container">
+     <nav id="main-nav">
+       
+         <a class="main-nav-link" href="/">Home</a>
+       
+         <a class="main-nav-link" href="/archives">Archives</a>
+       
+     </nav>
+   </div>
+   <!--
+   <div id="search-form-wrap">
+     <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+   </div>
+ -->
+    <h1 class="blog-title">王旭洁</h1>
+    <p class="lead blog-description"></p>
+</div>
+
+  <div id='main-part'>
+      <div class="main">
+<div class="blog-post">
+    <!-- Title -->
+    <h1 class="blog-post-title">
+        <a href="/2020/02/01/数据库/">
+            数据库基本常识
+        </a>
+    </h1>
+    <!-- Date and Author -->
+    <p class="blog-post-meta">
+        2020-02-01
+        
+    </p>
+
+    
+
+    <!-- Content -->
+    <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><a id="more"></a>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>表是存储数据库的最小单位</p>
+<p>Structured Query Lanhuage (SQL 结构化查询语言)</p>
+<p>DDL数据定义语言：create ，drop， alter </p>
+<p>DQL数据查询语言:select</p>
+<p>DML数据操纵语言:insert， delete， update</p>
+<p>DCL数据控制语言：grant（授权），revoke（回收）</p>
+<ol>
+<li><p>启动服务</p>
+<p>net  start 服务名：开启服务</p>
+<p>net stop 服务名 ：关闭服务</p>
+</li>
+<li><p>链接服务</p>
+<p>mysql -u 用户名 -p    (-h -P（端口号）)</p>
+<p>show tables;</p>
+</li>
+<li><p>创建用户以及密码</p>
+<p>create user 用户名称 identified by ‘密码’；</p>
+<p>创建用户时分配权限</p>
+<p>grant 权限 on 范围 to 用户@ identified by ‘密码’；    </p>
+</li>
+<li><p>选择</p>
+<p>select  * from mysql.user \G; //格式化</p>
+</li>
+<li><p>服务器级别</p>
+<p>数据库（具体的某一个数据库）</p>
+<p>表</p>
+<p>列（字段）</p>
+</li>
+<li><p>DESC 表名：查看表里数据的属性</p>
+</li>
+<li><p>授予权限</p>
+<p>grant 权限 on 范围 to 用户 [with grant option]</p>
+<p>[with grant option]代表被授权的用户可以将自己的权限授予别人</p>
+</li>
+<li><p>回收权限</p>
+<p>revoke 权限 on 范围 from 用户</p>
+</li>
+<li><p>刷新权限机制</p>
+<p>flush privileges;</p>
+</li>
+<li><p>修改密码</p>
+<ol>
+<li><p>更改指定用户密码</p>
+<p>set password for c=password( ‘ ‘ );</p>
+</li>
+</ol>
+</li>
+</ol>
+<pre><code>   update mysql.user set password=password(&apos; &apos;) where user=&quot; &quot;; 
+
+2. 更改自己的密码
+
+   set password=password(&apos; &apos;);</code></pre><ol start="11">
+<li><p>删除用户</p>
+<p>drop user 用户名；</p>
+</li>
+</ol>
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><ol>
+<li><p>创建数据库</p>
+</li>
+<li><p>创建教师信息表（教师编号，教师姓名，教师出生日期，教师性别，教师教龄，教师地址，教师所在地邮政编码）</p>
+</li>
+<li><p>create table 表名（</p>
+<p>字段名 字段类型（长度），</p>
+<p>）；</p>
+</li>
+</ol>
+<h3 id="mysql数据类型"><a href="#mysql数据类型" class="headerlink" title="mysql数据类型"></a>mysql数据类型</h3><ol>
+<li><p>数值型</p>
+<ol>
+<li><p>整形</p>
+<p>tinyint</p>
+<p>smallint</p>
+<p>mediumint</p>
+<p>int </p>
+<p>bigint</p>
+</li>
+<li><p>浮点</p>
+<p>double</p>
+<p>float</p>
+</li>
+<li><p>定点型</p>
+<p>decimal</p>
+</li>
+</ol>
+</li>
+<li><p>字符型</p>
+<p>char</p>
+<p>varchar</p>
+<p>text</p>
+<p>enum</p>
+<p>set</p>
+</li>
+<li><p>日期和时间</p>
+<p>data</p>
+<p>datatime</p>
+<p>time</p>
+<p>timestamp</p>
+<p>year</p>
+</li>
+</ol>
+<p>严格模式：指定的长度，不然报错</p>
+<p>非严格模式:</p>
+<p>文件的类型：</p>
+<ol>
+<li>.frm 表示表的结构 </li>
+<li>.MYD：数据文件</li>
+<li>.MYI: 索引文件</li>
+<li>.opt：编码规则</li>
+</ol>
+<p>数据库存储引擎：</p>
+<ol>
+<li>myisam —my</li>
+<li>innodb —ibd</li>
+</ol>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>多行注释</p>
+<p>/*</p>
+<p>多行注释</p>
+<p>*/</p>
+<p>#单行注释</p>
+<p>– 单行注释</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>insert into 表名(字段) values(值列表)；</p>
+<p>update 表名 set 字段1=值2 where 条件表达式</p>
+<p>delete  </p>
+<p>注意：</p>
+<ol>
+<li>如果针对表中所有字段添加数据，可省略字段列表</li>
+<li>字段列表不是表中所有字段时，非空无默认值字段必须出现</li>
+<li>值列表须与字段列表一一对应</li>
+<li>对于字段列表中的允许为空字段，值可输入null或default代替用户未指定情况</li>
+<li>对于字段列表中有默认值字段，值可使用defalut代替用户未指定情况</li>
+</ol>
+<p>强调：</p>
+<p>1.针对字符，日期，时间类型，数据值使用单引号。</p>
+
+
+    <!-- Social share choices -->
+    
+  <div id="social-share">
+    <a data-url="http://yoursite.com/2020/02/01/数据库/" href="https://plus.google.com/share?url=" class="googleplus"><img src="/image/googleplusicon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2020/02/01/数据库/" href="https://twitter.com/intent/tweet?url=" class="twitter"><img src="/image/twittericon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2020/02/01/数据库/" href="http://pinterest.com/pin/create/button/?url=" class="pinterest"><img src="/image/pinteresticon.png" alt=""/></a>
+    <a data-url="http://yoursite.com/2020/02/01/数据库/" href="https://www.facebook.com/sharer/sharer.php?u=" class="facebook"><img src="/image/facebookicon.png" alt=""/></a>
+  </div>
+
+
+
+
+
+<!--
+
+
+https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/02/01/数据库/
+http://yoursite.com/2020/02/01/%E6%95%B0%E6%8D%AE%E5%BA%93/
+-->
+
+
+
+    <hr />
+
+
+    <!-- Tags and Categories links -->
+    
+
+    
+
+
+<div class="blog-tags-container">
+    <span><img src="/image/tagsicon.png" alt=""/></span>
+    <a href="/tags/数据库安全/">#数据库安全</a>
+</div>
+
+
+
+    <!-- Comment using disqus -->
+    
+
+</div>
+</div>
+
+
+  </div>
+  <!-- Footer -->
+  <div id="footer">
+  <div id="footer-social">
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p id="footer-info">
+    &copy; 2020 John Doe<br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> -
+    Theme <a href="https://github.com/Suolawangzai/hexo-theme-nebula" target="_blank">nebula</a>
+  </p>
+
+  <div id="busuanzi">
+    <span id="busuanzi_container_site_pv">
+      &hearts;
+    Total visits: <span id="busuanzi_value_site_pv"></span>
+    </span>
+  </div>
+  <!--
+  <div id="footer-info">
+    &copy; 2020 John Doe<br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  </div>
+-->
+</div>
+
+  <!-- After footer scripts -->
+  <!-- Disqus Comments -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="/js/main.js"></script>
+
+</body>
+
+</html>
